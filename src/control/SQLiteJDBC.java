@@ -1,4 +1,4 @@
-package Control;
+package control;
 import java.sql.*;
 
 public class SQLiteJDBC{
@@ -14,4 +14,9 @@ public class SQLiteJDBC{
 		}
 	System.out.println("Opened database successfully");
 	}
+	
+	
+	
+	
+	
 }
