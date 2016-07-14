@@ -21,6 +21,24 @@ public class Ricovero {
 		this.letto=l;
 	}
 	
+	Ricovero(String cu,String div,String di,String df,String m){
+		this.codiceUnivoco=cu;
+		this.divisione=div;
+		this.dataInizio=di;
+		this.dataFine=df;
+		this.motivo=m;
+		this.letto=0;
+	}
+	
+	Ricovero(String cu,String div,String di,String m){
+		this.codiceUnivoco=cu;
+		this.divisione=div;
+		this.dataInizio=di;
+		this.motivo=m;
+		this.letto=0;
+	}
+	
+	
 	//mancano le foreign key.
 	
 	
