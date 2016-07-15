@@ -16,7 +16,7 @@ public class Ricovero implements Tabella {
 	private String dataInizio;
 	private String dataFine;
 	private Paziente paziente;
-	private String motivo;
+	private String motivo; 
 	private Medico medicoRes;
 	private Integer letto;
 	private Boolean dayHospital;
@@ -93,7 +93,7 @@ public class Ricovero implements Tabella {
 	public boolean getDayHospital(){
 		return dayHospital;
 	}
-	public LinkedList<Ricovero> getListaRicoveri(){
+	public static LinkedList<Ricovero> getListaRicoveri(){
 		return getRicoveri();
 	}
 	
@@ -259,7 +259,7 @@ public class Ricovero implements Tabella {
 		}
 	}
 
-	protected static LinkedList<Ricovero> getRicoveri(){
+	private static LinkedList<Ricovero> getRicoveri(){
 		LinkedList<Ricovero> result=new LinkedList<Ricovero>();
 		Connection c = null;
 	    Statement stmt = null;

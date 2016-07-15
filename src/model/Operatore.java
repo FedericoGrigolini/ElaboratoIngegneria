@@ -74,7 +74,7 @@ public class Operatore implements Tabella {
 		return this.dataAssunzione;
 	}
 	
-	public LinkedList<Operatore> getListaOperatori(){
+	public static LinkedList<Operatore> getListaOperatori(){
 		return getOperatori();
 	}
 	
@@ -191,7 +191,7 @@ public class Operatore implements Tabella {
 	}
 	
 	
-	protected static LinkedList<Operatore> getOperatori(){
+	private static LinkedList<Operatore> getOperatori(){
 		LinkedList<Operatore> result = new LinkedList<Operatore>();
 		try {
 		      Class.forName("org.sqlite.JDBC");
@@ -245,7 +245,7 @@ public class Operatore implements Tabella {
 	public void delete(Tabella t) {
 		if(t instanceof Operatore){
 			Operatore p=(Operatore) t;
-			String key = p.nome;
+			String key = p.codiceFiscale;
 			try {
 				Class.forName("org.sqlite.JDBC");
 			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");

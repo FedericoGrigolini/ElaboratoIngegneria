@@ -75,7 +75,7 @@ public class Paziente implements Tabella {
 		return this.provinciaResidenza;
 	}
 	
-	public LinkedList<Paziente> getLista(){
+	static public LinkedList<Paziente> getListaPazienti(){
 		return getPazienti();
 	}
 	
@@ -182,7 +182,7 @@ public class Paziente implements Tabella {
 	}
 	
 	
-	protected static LinkedList<Paziente> getPazienti(){
+	private static LinkedList<Paziente> getPazienti(){
 		LinkedList<Paziente> result = new LinkedList<Paziente>();
 		try {
 		      Class.forName("org.sqlite.JDBC");

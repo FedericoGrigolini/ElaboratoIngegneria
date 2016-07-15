@@ -41,11 +41,11 @@ public class Medico extends Operatore implements Tabella {
 		return this.Specialità;
 	}
 	
-	public LinkedList<Medico> getListaMedici(){
+	static public LinkedList<Medico> getListaMedici(){
 		return getMedici();
 	}
 	
-	protected static LinkedList<Medico> getMedici(){
+	private static LinkedList<Medico> getMedici(){
 		LinkedList<Medico> result= new LinkedList<Medico>();	
 		try {
 		      Class.forName("org.sqlite.JDBC");
@@ -54,7 +54,7 @@ public class Medico extends Operatore implements Tabella {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Medico;" );
 		      while ( rs.next() ) {
-		    	  for(Operatore o : getOperatori()){
+		    	  for(Operatore o : model.Operatore.getListaOperatori()){
 		  			if(o.codiceFiscale==rs.getString("Operatore")){
 		  				Medico m = (Medico)o;
 		  				m.Specialità=rs.getString("Specialità");

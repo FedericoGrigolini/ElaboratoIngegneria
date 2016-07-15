@@ -53,7 +53,7 @@ public class Esame implements Tabella {
 		return this.risultati;
 	}
 	
-	public LinkedList<Esame> getListaEsami(){
+	static public LinkedList<Esame> getListaEsami(){
 		return getEsami();
 	}
 	
@@ -113,7 +113,7 @@ public class Esame implements Tabella {
 		
 	}
 	
-	protected static LinkedList<Esame> getEsami(){
+	private static LinkedList<Esame> getEsami(){
 		LinkedList<Esame> result = new LinkedList<Esame>();
 		try {
 		      Class.forName("org.sqlite.JDBC");
