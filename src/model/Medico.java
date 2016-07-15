@@ -37,6 +37,10 @@ public class Medico extends Operatore implements Tabella {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getSpecialità(){
+		return this.Specialità;
+	}
+	
 	protected static LinkedList<Medico> getMedico(){
 		LinkedList<Medico> result= new LinkedList<Medico>();	
 		try {
@@ -107,7 +111,35 @@ public class Medico extends Operatore implements Tabella {
 		}
 
 	}
-
+	
+	public void setSpecialità(String k){
+		try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		      c.setAutoCommit(false);
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "UPDATE Medico "
+		      		+ "SET Specialità='"+ k +"' WHERE Operatore='"+ this.codiceFiscale +"';" );
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		      this.Specialità=k;
+		    } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      System.exit(0);
+		    }
+		
+	}
+	
+	public String toString(){
+		return "Codice Fiscale: "+this.codiceFiscale+
+				"\nNome e Cognome: "+ this.nome +"  "+this.cognome+
+				"\nLuogo e Data Nascita: "+ this.luogoNascita +"  "+this.dataNascita +
+				"\nData Assunzione: "+ this.dataAssunzione+"  Specialità: "+this.Specialità;
+		
+	}
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
