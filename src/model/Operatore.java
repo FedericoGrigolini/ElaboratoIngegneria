@@ -50,7 +50,7 @@ public class Operatore implements Tabella {
 		    }
 	}
 	
-	public String getCodiceFiscaleFiscale(){
+	public String getCodiceFiscale(){
 		return this.codiceFiscale;
 	}
 	
@@ -74,11 +74,11 @@ public class Operatore implements Tabella {
 		return this.dataAssunzione;
 	}
 	
-	public LinkedList<Operatore> getLista(){
+	public LinkedList<Operatore> getListaOperatori(){
 		return getOperatori();
 	}
 	
-	public void setCodiceFiscale(String k){
+	public void setCodice(String k){
 		try {
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
@@ -261,6 +261,21 @@ public class Operatore implements Tabella {
 		}
 	}
 
+	public void delete(String key){
+			try {
+				Class.forName("org.sqlite.JDBC");
+			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+			    c.setAutoCommit(false);
+			    stmt = c.createStatement();
+			    String sql = "DELETE FROM Operatore WHERE CodiceFiscale='"+ key +"';";
+			    stmt.executeUpdate(sql);
+			    c.commit();
+			}catch ( Exception e ) {
+		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		    	System.exit(0);
+		    }			
+	}
+	
 	public String toString(){
 		return "Codice Fiscale: "+this.codiceFiscale+
 				"\nNome e Cognome: "+ this.nome +" "+this.cognome+

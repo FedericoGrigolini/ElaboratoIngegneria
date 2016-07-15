@@ -41,7 +41,11 @@ public class Medico extends Operatore implements Tabella {
 		return this.Specialità;
 	}
 	
-	protected static LinkedList<Medico> getMedico(){
+	public LinkedList<Medico> getListaMedici(){
+		return getMedici();
+	}
+	
+	protected static LinkedList<Medico> getMedici(){
 		LinkedList<Medico> result= new LinkedList<Medico>();	
 		try {
 		      Class.forName("org.sqlite.JDBC");
@@ -110,6 +114,21 @@ public class Medico extends Operatore implements Tabella {
 		    }			
 		}
 
+	}
+	
+	public void delete(String key){
+			try {
+				Class.forName("org.sqlite.JDBC");
+			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+			    c.setAutoCommit(false);
+			    stmt = c.createStatement();
+			    String sql = "DELETE FROM Medico WHERE Operatore='"+ key +"';";
+			    stmt.executeUpdate(sql);
+			    c.commit();
+			}catch ( Exception e ) {
+		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		    	System.exit(0);
+		    }			
 	}
 	
 	public void setSpecialità(String k){
