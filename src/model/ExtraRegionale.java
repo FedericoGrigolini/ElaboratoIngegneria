@@ -4,9 +4,16 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 
 public class ExtraRegionale extends Paziente{
-	
+
 	private String Ulss;
 	private String regione;
+	
+	public ExtraRegionale(String codice, String nome2, String cognome2, String dataN, String luogoN, String provincia,String ul,String re) {
+		super(codice, nome2, cognome2, dataN, luogoN, provincia);
+		// TODO Auto-generated constructor stub
+		Ulss=ul;
+		regione=re;
+	}
 	public ExtraRegionale(String key) {
 		super(key);
 		try {
@@ -30,6 +37,8 @@ public class ExtraRegionale extends Paziente{
 		    }
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	public String getUlss(){return Ulss;}
 	public String getRegione(){return regione;}

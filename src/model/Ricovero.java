@@ -21,7 +21,7 @@ public class Ricovero {
 	private Integer letto;
 	private Boolean dayHospital;
 	
-	public Ricovero(String cu, String div,String di,String df,String p,String mo,String me,int l,boolean h ){
+	public Ricovero(String cu, String div,String di,String df,String p,String mo,String me,Integer l,boolean h ){
 		this.codiceUnivoco=cu;
 		this.divisione=div;
 		this.dataInizio=di;

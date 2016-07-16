@@ -18,9 +18,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JLayeredPane;
 
 public class Login {
-
+	public static boolean occupato=false;
 	private JFrame frame;
 	private JTextField userField;
 	private JPasswordField passwordField;
@@ -54,7 +61,7 @@ public class Login {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 671, 493);
+		frame.setBounds(100, 100, 342, 152);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblUtente = new JLabel("Utente");
@@ -67,50 +74,62 @@ public class Login {
 		userField.setColumns(10);
 		
 		passwordField = new JPasswordField();
+ 
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				String user=userField.getText();
-
-				String pass=passwordField.getText();
-				switch(control.LoginControl.autenticazione(user, pass)){
-				case -1:{
-					errorLabel.setEnabled(true);
-					break;
-				}
-				case 0:{
-					errorLabel.setEnabled(false);
-					break;
-				}
-				case 1:{
-					errorLabel.setEnabled(false);
-					break;
-				}
-				case 2:{
-					errorLabel.setEnabled(false);
-					break;
-				}
-				case 3:{
-					errorLabel.setEnabled(false);
-					break;
-				}
-				case 4:{
-					errorLabel.setEnabled(false);
-					break;
-				}
-				case 5:{
-					errorLabel.setEnabled(false);
-					break;
-				}
+				
+				if(!occupato){
+					String user=userField.getText();
+					String pass=passwordField.getText();
+					System.out.println(user+" "+pass);
+					switch(control.LoginControl.autenticazione(user, pass)){
+					case -1:{
+						MenùAccettazione.main(null);
+						errorLabel.setVisible(true);
+						break;
+					}
+					case 0:{
+						occupato=true;
+						errorLabel.setVisible(false);
+						MenùAccettazione.main(null);
+						break;
+					}
+					case 1:{
+						occupato=true;
+						errorLabel.setVisible(false);
+						break;
+					}
+					case 2:{
+						occupato=true;
+						errorLabel.setVisible(false);
+						break;
+					}
+					case 3:{
+						occupato=true;
+						errorLabel.setVisible(false);
+						break;
+					}
+					case 4:{
+						occupato=true;
+						errorLabel.setVisible(false);
+						break;
+					}
+					case 5:{
+						occupato=true;
+						errorLabel.setVisible(false);
+						break;
+					}
+					}
 				}
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		errorLabel = new JLabel("Utente o Password non validi");
-		errorLabel.setEnabled(false);
+		errorLabel.setVisible(false);
 		errorLabel.setForeground(Color.RED);
 		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -119,9 +138,9 @@ public class Login {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(errorLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(errorLabel, GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblUtente)
 								.addComponent(lblPassword))
@@ -131,7 +150,7 @@ public class Login {
 								.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnNewButton)))
-					.addContainerGap(350, Short.MAX_VALUE))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -149,8 +168,10 @@ public class Login {
 						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(errorLabel)
-					.addContainerGap(368, Short.MAX_VALUE))
+					.addContainerGap(336, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
+	
+	
 }

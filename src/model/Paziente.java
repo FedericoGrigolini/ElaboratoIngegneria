@@ -33,13 +33,13 @@ public class Paziente{
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Paziente;" );
 		      while ( rs.next() ) {
-		    	  if(rs.getString("Codice")==key){
-		    		  this.codiceFiscale= rs.getString("Codice");
-				      this.nome = rs.getString("Nome");
-				      this.cognome= rs.getString("Cognome");
-				      this.dataNascita= rs.getString("Data_N");
-				      this.luogoNascita= rs.getString("Luogo_N");
-				      this.provinciaResidenza= rs.getString("Provincia_R");
+		    	  if(rs.getString("Codice").equals(key)){
+		    		  this.codiceFiscale= rs.getString(1);
+				      this.nome = rs.getString(2);
+				      this.cognome= rs.getString(3);
+				      this.dataNascita= rs.getString(4);
+				      this.luogoNascita= rs.getString(5);
+				      this.provinciaResidenza= rs.getString(6);
 		    	  }
 		      }
 		      rs.close();

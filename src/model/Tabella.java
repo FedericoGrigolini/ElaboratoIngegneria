@@ -147,7 +147,7 @@ public class Tabella {
 		         String  cognome = rs.getString("Cognome");
 		         String  dataN = rs.getString("Data_N");
 		         String luogoN = rs.getString("Luogo_N");
-		         String provincia = rs.getString("Provincia_R");
+		         String provincia = rs.getString("Data_Ass");
 		         result.add(new Operatore(codice,nome,cognome,dataN,luogoN,provincia));
 		      }
 		      rs.close();
@@ -196,8 +196,10 @@ public class Tabella {
 	}
 	//Medico
 	public LinkedList<Medico> getListaMedici(){
-		LinkedList<Medico> result= new LinkedList<Medico>();
+		LinkedList<Medico> result = new LinkedList<Medico>();
 		Tabella tab=new Tabella();
+		LinkedList<Operatore> temp = tab.getListaOperatori();
+		
 		try {
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
@@ -205,10 +207,9 @@ public class Tabella {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Medico;" );
 		      while ( rs.next() ) {
-		    	  for(Operatore o : tab.getListaOperatori()){
-		  			if(o.codiceFiscale==rs.getString("Operatore")){
-		  				Medico m = (Medico)o;
-		  				m.Specialità=rs.getString("Specialità");
+		    	  for(Operatore o : temp){
+		  			if(o.codiceFiscale.equals(rs.getString("Operatore"))){
+		  				Medico m = new Medico(o.codiceFiscale, o.nome, o.cognome, o.dataNascita, o.luogoNascita, o.dataAssunzione, rs.getString("Specialità"));
 		  				result.add(m);
 		  			}
 		    	  }

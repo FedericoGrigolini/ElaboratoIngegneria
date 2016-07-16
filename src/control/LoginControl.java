@@ -4,7 +4,10 @@ public class LoginControl {
 	public static int autenticazione(String user, String pass){
 		switch(user){
 		case "S.Accettazione":{
-			if(pass=="admin"){
+			System.out.println("1");
+			
+			if(pass.equals("admin")){
+				System.out.println("2");
 				return 0;
 			}
 			else return -1;
