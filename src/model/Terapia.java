@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
 
 public class Terapia implements Tabella {
 	protected static Connection c = null;
@@ -93,16 +94,84 @@ public class Terapia implements Tabella {
 		    }
 	}
 	
+	public LinkedList<Terapia> getListaTerapie(){return getTerapie();}
+	
+	protected static LinkedList<Terapia> getTerapie(){
+		LinkedList<Terapia> result = new LinkedList<Terapia>();
+		try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		      c.setAutoCommit(false);
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Terapia;" );
+		      while ( rs.next() ) {
+		         result.add(new Terapia(rs.getString(1)));
+		      }
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		    } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      return null;
+		    }
+		return result;
+	}
+	
 	@Override
 	public void insert(Tabella t) {
-		// TODO Auto-generated method stub
-
+		if(t instanceof Terapia){
+			Terapia p=(Terapia)t;
+			try {
+			      Class.forName("org.sqlite.JDBC");
+			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+			      c.setAutoCommit(false);
+			      stmt = c.createStatement();
+			      String sql = "INSERT INTO Terapia (Ricovero,Data_I,Data_F) " +
+			                   "VALUES ('"+p.ricovero.getCodiceUnivoco() + "','"+ p.dataInizio +"','"+ p.dataFine+"');"; 
+			      stmt.executeUpdate(sql);
+			      stmt.close();
+			      c.commit();
+			      c.close();
+			    } catch ( Exception e ) {
+			    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			    	System.exit(0);
+			    }
+		}
 	}
 
 	@Override
 	public void delete(Tabella t) {
-		// TODO Auto-generated method stub
-
+		if(t instanceof Terapia){
+			Terapia p=(Terapia) t;
+			String key = p.getRicovero().getCodiceUnivoco();
+			try {
+				Class.forName("org.sqlite.JDBC");
+			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+			    c.setAutoCommit(false);
+			    stmt = c.createStatement();
+			    String sql = "DELETE FROM Terapia WHERE Ricovero='"+ key +"';";
+			    stmt.executeUpdate(sql);
+			    c.commit();
+			}catch ( Exception e ) {
+		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		    	System.exit(0);
+		    }			
+		}
+	}
+	
+	public void delete(String key) {	
+			try {
+				Class.forName("org.sqlite.JDBC");
+			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+			    c.setAutoCommit(false);
+			    stmt = c.createStatement();
+			    String sql = "DELETE FROM Terapia WHERE Ricovero='"+ key +"';";
+			    stmt.executeUpdate(sql);
+			    c.commit();
+			}catch ( Exception e ) {
+		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		    	System.exit(0);
+		    }			
 	}
 
 	public static void main(String[] args) {

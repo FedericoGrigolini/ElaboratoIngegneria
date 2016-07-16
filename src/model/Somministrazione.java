@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
 
 public class Somministrazione implements Tabella {
 	protected static Connection c = null;
@@ -149,6 +150,30 @@ public class Somministrazione implements Tabella {
 		      System.exit(0);
 		    }
 	}
+	public LinkedList<Somministrazione> getListaSomministrazioni(){return getSomministrazioni();}
+	
+	protected static LinkedList<Somministrazione> getSomministrazioni(){
+		LinkedList<Somministrazione> result = new LinkedList<Somministrazione>();
+		try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		      c.setAutoCommit(false);
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Somministrazione;" );
+		      while ( rs.next() ) {
+		         result.add(new Somministrazione(rs.getString(1), rs.getString(2), rs.getString(3)));
+		      }
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		    } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      return null;
+		    }
+		return result;
+	}
+	
+	
 	
 	@Override
 	public void insert(Tabella t) {
