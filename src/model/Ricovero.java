@@ -21,8 +21,6 @@ public class Ricovero implements Tabella {
 	private Integer letto;
 	private Boolean dayHospital;
 	
-	
-	
 	public Ricovero(String cu, String div,String di,String df,String p,String mo,String me,int l,boolean h ){
 		this.codiceUnivoco=cu;
 		this.divisione=div;
@@ -93,7 +91,7 @@ public class Ricovero implements Tabella {
 	public boolean getDayHospital(){
 		return dayHospital;
 	}
-	public static LinkedList<Ricovero> getListaRicoveri(){
+	public static LinkedList<Ricovero> getListaRicoveri(){ 
 		return getRicoveri();
 	}
 	

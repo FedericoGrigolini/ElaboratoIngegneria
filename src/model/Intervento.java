@@ -366,7 +366,7 @@ public class Intervento implements Tabella {
 				"\nTipo: "+this.tipo+
 				"\nDati Anestesia: "+this.anestesia+"\nOperatori in Sala: ";
 		for(Operatore o:getOperatoriSala()){
-			p = p + o.getNome()+" "+o.getCognome()+" "+o.getCodiceFiscale()+ "\n";
+			p = p + o.getNome()+" "+o.getCognome()+" "+o.getCodiceFiscale()+"\n";
 		}
 		return p;
 	}
