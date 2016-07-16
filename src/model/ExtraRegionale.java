@@ -1,28 +1,26 @@
 package model;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.LinkedList;
 
-public class PrincipioAttivo implements Tabella {
-	protected static Connection c = null;
-    protected static Statement stmt = null;
-	private String nome;
+public class ExtraRegionale extends Paziente{
 	
-	public PrincipioAttivo(String nome){
+	private String Ulss;
+	private String regione;
+	public ExtraRegionale(String key) {
+		super(key);
 		try {
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM PrincipioAttivo;" );
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM FuoriRegione;" );
 		      while ( rs.next() ) {
-		         if(nome==rs.getString(1)){
-		        	 this.nome=nome;
-		        	 break;
-		         }
+		    	  if(rs.getString(1)==key){
+		    		  this.Ulss=rs.getString(2);
+		    		  this.regione=rs.getString(3);
+		    	  }
 		      }
 		      rs.close();
 		      stmt.close();
@@ -31,46 +29,57 @@ public class PrincipioAttivo implements Tabella {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		      System.exit(0);
 		    }
+		// TODO Auto-generated constructor stub
 	}
 	
-	public String getNome(){
-		return nome;
-	}
-	
-	public void setNome(String k){
+	public String getUlss(){return Ulss;}
+	public String getRegione(){return regione;}
+	public void setUlss(String k){
 		try {
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE PrincipioAttivo "
-		      		+ "SET Nome='"+ k +"' WHERE Nome='"+ this.nome +"';" );
+		      ResultSet rs = stmt.executeQuery( "UPDATE FuoriRegione "
+		      		+ "SET Ulss='"+ k +"' WHERE Paziente='"+ this.codiceFiscale +"';" );
 		      rs.close();
 		      stmt.close();
 		      c.close();
-		      this.nome=k;
+		      this.Ulss=k;
+		    } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      System.exit(0);
+		    }
+	}
+	public void setRegione(String k){
+		try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		      c.setAutoCommit(false);
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "UPDATE FuoriRegione "
+		      		+ "SET Regione='"+ k +"' WHERE Paziente='"+ this.codiceFiscale +"';" );
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		      this.regione=k;
 		    } catch ( Exception e ) {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		      System.exit(0);
 		    }
 	}
 	
-	public static LinkedList<PrincipioAttivo> getListaPrinciAttivi(){
-		return getPrincipiAttivi();
-	}
-	
-	protected static LinkedList<PrincipioAttivo> getPrincipiAttivi(){
-		LinkedList<PrincipioAttivo> result = new LinkedList<PrincipioAttivo>();
+	protected static LinkedList<ExtraRegionale> getRegionali(){
+		LinkedList<ExtraRegionale> result = new LinkedList<ExtraRegionale>();
 		try {
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM PrincipioAttivo;" );
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM FuoriRegione;" );
 		      while ( rs.next() ) {
-		         String  nome = rs.getString("Nome");
-
-		         result.add(new PrincipioAttivo(nome));
+		         String  paziente = rs.getString(1);
+		         result.add(new ExtraRegionale(paziente));
 		      }
 		      rs.close();
 		      stmt.close();
@@ -83,17 +92,16 @@ public class PrincipioAttivo implements Tabella {
 		
 	}
 	
-	@Override
 	public void insert(Object t) {
-		if(t instanceof PrincipioAttivo){
-			PrincipioAttivo p=(PrincipioAttivo)t;
+		if(t instanceof ExtraRegionale){
+			ExtraRegionale p=(ExtraRegionale)t;
 			try {
 			      Class.forName("org.sqlite.JDBC");
 			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
-			      String sql = "INSERT INTO PrincipioAttivo (Nome) " +
-			                   "VALUES ('"+p.nome +  "');"; 
+			      String sql = "INSERT INTO InRegione (Paziente,Ulss,Regione) " +
+			                   "VALUES ('"+p.getCodiceFiscale() +"','"+p.getUlss() +"','"+p.getRegione() +"');"; 
 			      stmt.executeUpdate(sql);
 			      stmt.close();
 			      c.commit();
@@ -106,32 +114,13 @@ public class PrincipioAttivo implements Tabella {
 
 	}
 
-	@Override
-	public void delete(Object t) {
-		if(t instanceof PrincipioAttivo){
-			PrincipioAttivo p=(PrincipioAttivo) t;
-			String key = p.getNome();
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM PrincipioAttivo WHERE Nome='"+ key +"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-		}
-	}
 	public void delete(String key) {
 			try {
 				Class.forName("org.sqlite.JDBC");
 			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			    c.setAutoCommit(false);
 			    stmt = c.createStatement();
-			    String sql = "DELETE FROM PrincipioAttivo WHERE Nome='"+ key +"';";
+			    String sql = "DELETE FROM InRegione WHERE Paziente='"+ key +"';";
 			    stmt.executeUpdate(sql);
 			    c.commit();
 			}catch ( Exception e ) {
@@ -139,14 +128,4 @@ public class PrincipioAttivo implements Tabella {
 		    	System.exit(0);
 		    }			
 	}
-	
-	public String toString(){
-		return "Principio Attivo"+this.nome;
-	}
-	
-	public static void main(String[] args) {
-		
-
-	}
-
 }

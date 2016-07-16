@@ -47,7 +47,7 @@ public class Infermiere extends Operatore implements Tabella{
 	
 
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Infermiere){
 			Infermiere p=(Infermiere)t;
 			LinkedList<Operatore> temp = getListaOperatori();
@@ -75,7 +75,7 @@ public class Infermiere extends Operatore implements Tabella{
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Infermiere){
 			Infermiere p=(Infermiere) t;
 			String key = p.getCodiceFiscale();

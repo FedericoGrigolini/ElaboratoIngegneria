@@ -210,7 +210,7 @@ public class Paziente implements Tabella {
 	}
 	
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Paziente){
 			Paziente p=(Paziente)t;
 			try {
@@ -233,7 +233,7 @@ public class Paziente implements Tabella {
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Paziente){
 			Paziente p=(Paziente) t;
 			String key = p.nome;

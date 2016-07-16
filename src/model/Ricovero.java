@@ -307,7 +307,7 @@ public class Ricovero implements Tabella {
 	}
 	
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Ricovero){
 			Ricovero p=(Ricovero)t;
 			try {
@@ -333,7 +333,7 @@ public class Ricovero implements Tabella {
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Ricovero){
 			Ricovero p=(Ricovero) t;
 			String key = p.codiceUnivoco;

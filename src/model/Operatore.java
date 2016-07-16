@@ -219,7 +219,7 @@ public class Operatore implements Tabella {
 	}
 	
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Operatore){
 			Operatore p=(Operatore)t;
 			try {
@@ -242,7 +242,7 @@ public class Operatore implements Tabella {
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Operatore){
 			Operatore p=(Operatore) t;
 			String key = p.codiceFiscale;

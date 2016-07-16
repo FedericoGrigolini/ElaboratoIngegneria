@@ -137,7 +137,7 @@ public class Esame implements Tabella {
 	}
 	
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Esame){
 			Esame p=(Esame)t;
 			try {
@@ -159,7 +159,7 @@ public class Esame implements Tabella {
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Esame){
 			Esame p=(Esame) t;
 			try {

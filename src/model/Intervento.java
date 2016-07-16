@@ -287,7 +287,7 @@ public class Intervento implements Tabella {
 	}
 	
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Intervento){
 			Intervento p=(Intervento)t;
 			try {
@@ -311,7 +311,7 @@ public class Intervento implements Tabella {
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Intervento){
 			Intervento p=(Intervento) t;
 			try {

@@ -178,7 +178,7 @@ public class Farmaco implements Tabella {
 	
 	
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Farmaco){
 			Farmaco p=(Farmaco)t;
 			try {
@@ -201,7 +201,7 @@ public class Farmaco implements Tabella {
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Farmaco){
 			Farmaco p=(Farmaco) t;
 			String key = p.getNome();

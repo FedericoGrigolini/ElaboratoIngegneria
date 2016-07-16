@@ -73,7 +73,7 @@ public class Medico extends Operatore implements Tabella {
 	}
 	
 	@Override
-	public void insert(Tabella t) {
+	public void insert(Object t) {
 		if(t instanceof Medico){
 			Medico p=(Medico)t;
 			try {
@@ -96,7 +96,7 @@ public class Medico extends Operatore implements Tabella {
 	}
 
 	@Override
-	public void delete(Tabella t) {
+	public void delete(Object t) {
 		if(t instanceof Medico){
 			Medico p=(Medico) t;
 			String key = p.nome;
