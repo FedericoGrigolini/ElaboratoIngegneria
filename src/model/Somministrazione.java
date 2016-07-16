@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.LinkedList;
 
-public class Somministrazione implements Tabella {
+
+public class Somministrazione {
 	protected static Connection c = null;
     protected static Statement stmt = null;
     
@@ -150,89 +150,8 @@ public class Somministrazione implements Tabella {
 		      System.exit(0);
 		    }
 	}
-	public LinkedList<Somministrazione> getListaSomministrazioni(){return getSomministrazioni();}
-	
-	protected static LinkedList<Somministrazione> getSomministrazioni(){
-		LinkedList<Somministrazione> result = new LinkedList<Somministrazione>();
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Somministrazione;" );
-		      while ( rs.next() ) {
-		         result.add(new Somministrazione(rs.getString(1), rs.getString(2), rs.getString(3)));
-		      }
-		      rs.close();
-		      stmt.close();
-		      c.close();
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      return null;
-		    }
-		return result;
-	}
-	
-	
-	
-	@Override
-	public void insert(Object t) {
-		if(t instanceof Somministrazione){
-			Somministrazione p=(Somministrazione)t;
-			try {
-			      Class.forName("org.sqlite.JDBC");
-			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			      c.setAutoCommit(false);
-			      stmt = c.createStatement();
-			      String sql = "INSERT INTO Somministrazione (Terapia,Farmaco,Infermiere,Dosaggio,Modalità) " +
-			                   "VALUES ('"+p.terapia.getRicovero() +"','"+p.farmaco.getNome()+"','"+p.infermiere.getCodiceFiscale()+"','"+p.dose+"','"+ p.modalità +"');"; 
-			      stmt.executeUpdate(sql);
-			      stmt.close();
-			      c.commit();
-			      c.close();
-			    } catch ( Exception e ) {
-			    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			    	System.exit(0);
-			    }
-		}
 
-	}
-
-	@Override
-	public void delete(Object t) {
-		if(t instanceof Somministrazione){
-			Somministrazione p=(Somministrazione) t;
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Somministrazione WHERE Terapia='"+ p.terapia.getRicovero() +"' AND Farmaco='"+p.farmaco.getNome()+"'AND Infermiere='"+ p.infermiere.codiceFiscale+"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-		}
-
-	}
 	
-	public void delete(String t,String f, String i) {
-
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Somministrazione WHERE Terapia='"+ t +"' AND Farmaco='"+f+"'AND Infermiere='"+ i+"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

@@ -29,7 +29,7 @@ public class Regionale extends Paziente {
 		    }
 	}
 	
-	protected static LinkedList<Regionale> getRegionali(){
+	public LinkedList<Regionale> getListaRegionali(){
 		LinkedList<Regionale> result = new LinkedList<Regionale>();
 		try {
 		      Class.forName("org.sqlite.JDBC");
@@ -50,9 +50,8 @@ public class Regionale extends Paziente {
 		    }
 		return result;
 		
-	}
-	
-	public void insert(Object t) {
+	}	
+	public void insertRegionale(Object t) {
 		if(t instanceof Regionale){
 			Regionale p=(Regionale)t;
 			try {
@@ -73,8 +72,7 @@ public class Regionale extends Paziente {
 		}
 
 	}
-
-	public void delete(String key) {
+	public void deleteRegionale(String key) {
 			try {
 				Class.forName("org.sqlite.JDBC");
 			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");

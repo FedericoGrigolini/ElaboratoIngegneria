@@ -3,7 +3,7 @@ package model;
 import java.sql.*;
 import java.util.LinkedList;
 
-public class Esame implements Tabella {
+public class Esame {
 	protected static Connection c = null;
     protected static Statement stmt = null;
     
@@ -51,10 +51,6 @@ public class Esame implements Tabella {
 	
 	public String getRisultati(){
 		return this.risultati;
-	}
-	
-	static public LinkedList<Esame> getListaEsami(){
-		return getEsami();
 	}
 	
 	public void setTipo(String k){
@@ -113,7 +109,7 @@ public class Esame implements Tabella {
 		
 	}
 	
-	private static LinkedList<Esame> getEsami(){
+	public LinkedList<Esame> getListaEsami(){
 		LinkedList<Esame> result = new LinkedList<Esame>();
 		try {
 		      Class.forName("org.sqlite.JDBC");
@@ -136,8 +132,8 @@ public class Esame implements Tabella {
 		return result;
 	}
 	
-	@Override
-	public void insert(Object t) {
+
+	public void insertEsame(Object t) {
 		if(t instanceof Esame){
 			Esame p=(Esame)t;
 			try {
@@ -146,7 +142,7 @@ public class Esame implements Tabella {
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
 			      String sql = "INSERT INTO Esame (Tipo,Ricovero,Risultati) " +
-			                   "VALUES ('"+p.tipo + "','"+p.ricovero.getCodiceUnivoco() + "','" + p.risultati + "');"; 
+			                   "VALUES ('"+p.getTipo() + "','"+p.getRicovero().getCodiceUnivoco() + "','" + p.getRisultati() + "');"; 
 			      stmt.executeUpdate(sql);
 			      stmt.close();
 			      c.commit();
@@ -157,27 +153,7 @@ public class Esame implements Tabella {
 			    }
 		}
 	}
-
-	@Override
-	public void delete(Object t) {
-		if(t instanceof Esame){
-			Esame p=(Esame) t;
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Esame WHERE Tipo='"+ p.tipo +"' AND Ricovero='"+p.ricovero.getCodiceUnivoco()+"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-		}
-	}
-
-	public void delete(String k, String kr){
+	public void deleteOperatore(String k, String kr){
 			try {
 				Class.forName("org.sqlite.JDBC");
 			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");

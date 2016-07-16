@@ -4,7 +4,7 @@ import model.Operatore;
 import java.sql.*;
 import java.util.LinkedList;
 
-public class Intervento implements Tabella {
+public class Intervento  {
 	protected static Connection c = null;
     protected static Statement stmt = null;
     
@@ -110,10 +110,6 @@ public class Intervento implements Tabella {
 		    }
 		return result;
 		
-	}
-	
-	static public LinkedList<Intervento> getListaInterventi(){
-		return getInterventi();
 	}
 	
 	public void setCodice(String key){
@@ -261,88 +257,7 @@ public class Intervento implements Tabella {
 		
 	}
 	
-	private static LinkedList<Intervento> getInterventi(){
-		LinkedList<Intervento> result = new LinkedList<Intervento>();
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Intervento;" );
-		      while ( rs.next() ) {
-		    	  
-		    	  String ricovero = rs.getString(1);
-		    	  String codice = rs.getString(2);
-		    	  String operatore = rs.getString(3);
-			      result.add(new Intervento(ricovero, codice, operatore));
-		      }
-		      rs.close();
-		      stmt.close();
-		      c.close();
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      return null;
-		    }
-		return result;
-	}
-	
-	@Override
-	public void insert(Object t) {
-		if(t instanceof Intervento){
-			Intervento p=(Intervento)t;
-			try {
-			      Class.forName("org.sqlite.JDBC");
-			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			      c.setAutoCommit(false);
-			      stmt = c.createStatement();
-			      String sql = "INSERT INTO Intervento (Ricovero,Codice_Intervento,Operatore,Data,Orario,Tipo,Livello_Urgenza,Durata,Anestesia) " +
-			              "VALUES ('"+p.ricovero.getCodiceUnivoco() + "','"+p.getCodiceIntervento() + "','" + p.operatore.getCodiceFiscale() + "','" 
-			    		  + p.getData() + "','" + p.getOrario() + "','" + p.getTipo() +"','" + p.getLivelloUrgenza().toString() +"','" 
-			              + p.getDurata().toString() +"','" + p.getAnestesia() +"');"; 
-			      stmt.executeUpdate(sql);
-			      stmt.close();
-			      c.commit();
-			      c.close();
-			    } catch ( Exception e ) {
-			    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			    	System.exit(0);
-			    }
-		}
-	}
 
-	@Override
-	public void delete(Object t) {
-		if(t instanceof Intervento){
-			Intervento p=(Intervento) t;
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Intervento WHERE Codice_Intervento='"+ p.codice +"' AND Ricovero='"+p.ricovero.getCodiceUnivoco()+"' AND Operatore='"+p.operatore.getCodiceFiscale()+"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-		}
-	}
-
-	public void delete(String ric, String cod ){
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Intervento WHERE Codice_Intervento='"+ cod +"' AND Ricovero='"+ric+"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-	}
 	
 	public void delete(String ric, String cod,String op ){
 		try {

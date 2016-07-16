@@ -93,7 +93,7 @@ public class PrenotazionePostRicovero{
 		      System.exit(0);
 		    }
 	}
-	protected static LinkedList<PrenotazionePostRicovero> getPrenotazioniPostRicovero(){
+	public LinkedList<PrenotazionePostRicovero> getListaPrenotazioniPostRicovero(){
 		LinkedList<PrenotazionePostRicovero> result = new LinkedList<PrenotazionePostRicovero>();
 		try {
 		      Class.forName("org.sqlite.JDBC");
@@ -115,10 +115,8 @@ public class PrenotazionePostRicovero{
 		    }
 		return result;
 		
-	}
-	
-
-	public void insert(Object t) {
+	}	
+	public void insertPrenotazionePostRicovero(Object t) {
 		if(t instanceof PrenotazionePostRicovero){
 			PrenotazionePostRicovero p=(PrenotazionePostRicovero)t;
 			try {
@@ -127,7 +125,7 @@ public class PrenotazionePostRicovero{
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
 			      String sql = "INSERT INTO PrenotazionePostRicovero (Ricovero,Data,Orario) " +
-			                   "VALUES ('"+p.ricovero.getCodiceUnivoco() +"','"+p.data +"','"+p.orario +"');"; 
+			                   "VALUES ('"+p.getRicovero().getCodiceUnivoco() +"','"+p.getData() +"','"+p.getOrario() +"');"; 
 			      stmt.executeUpdate(sql);
 			      stmt.close();
 			      c.commit();
@@ -139,8 +137,7 @@ public class PrenotazionePostRicovero{
 		}
 
 	}
-
-	public void delete(String key) {
+	public void deletePrenotazionePostRicovero(String key) {
 			try {
 				Class.forName("org.sqlite.JDBC");
 			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");

@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 
 
-public class Ricovero implements Tabella {
+public class Ricovero {
 	protected static Connection c = null;
     protected static Statement stmt = null;
 	
@@ -90,9 +90,6 @@ public class Ricovero implements Tabella {
 	}
 	public boolean getDayHospital(){
 		return dayHospital;
-	}
-	public static LinkedList<Ricovero> getListaRicoveri(){ 
-		return getRicoveri();
 	}
 	
 	public void setCodiceUnivoco(String k){
@@ -256,38 +253,6 @@ public class Ricovero implements Tabella {
 		      System.exit(0);
 		}
 	}
-
-	private static LinkedList<Ricovero> getRicoveri(){
-		LinkedList<Ricovero> result=new LinkedList<Ricovero>();
-		Connection c = null;
-	    Statement stmt = null;
-	    try {
-	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-	      c.setAutoCommit(false);
-	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery( "SELECT * FROM Ricovero;" );
-	      while ( rs.next() ) {
-	         String  codice = rs.getString("Codice");
-	         String  dataInizio = rs.getString("Data_I");
-	         String  dataFine = rs.getString("Data_F");
-	         String  motivo = rs.getString("Motivo");
-	         String paziente = rs.getString("Paziente");
-	         String divisione = rs.getString("Divisione");
-	         int letto = rs.getInt("Letto");
-	         String medico = rs.getString("Medico_Res");
-	         Boolean  dayHospital = rs.getBoolean("DayHospital");
-	         result.add(new Ricovero(codice, divisione, dataInizio, dataFine, paziente, motivo, medico ,letto,dayHospital));
-	      }
-	      rs.close();
-	      stmt.close();
-	      c.close();
-	    } catch ( Exception e ) {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      return null;
-	    }		
-		return result;
-	}
 	
 	public String toString(){
 		return "Codice Univoco: "+this.codiceUnivoco+"  Divisione: "+this.divisione+
@@ -297,75 +262,16 @@ public class Ricovero implements Tabella {
 				"\nMedico Responsabile: "+this.medicoRes+
 				"\nLetto: "+letto+"   Day Hospital: "+this.dayHospital+"\n";	
 	}
-	
-	
+		
 	public static void main( String args[] ){
-		LinkedList<Ricovero> ricoveri = getRicoveri();
+		LinkedList<Ricovero> ricoveri = new Tabella().getListaRicoveri();
 		for(Ricovero a : ricoveri){
 			System.out.println(a.toString());
 		}
 	}
 	
-	@Override
-	public void insert(Object t) {
-		if(t instanceof Ricovero){
-			Ricovero p=(Ricovero)t;
-			try {
-			      Class.forName("org.sqlite.JDBC");
-			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			      c.setAutoCommit(false);
-			      stmt = c.createStatement();
-			      String sql = "INSERT INTO Ricovero (CodiceFiscale,Data_I,Data_F,Motivo,Paziente,Divisione,Letto,Medico_Res,dayHospital) " +
-			                   "VALUES ('"+p.codiceUnivoco + "','"+p.dataInizio + "','" + p.dataFine + "','" +p.motivo+
-			                   "','"+ p.paziente.getCodiceFiscale() + "','"+ p.divisione + "','"+ p.letto + "','"+ p.medicoRes.getCodiceFiscale()+
-			                   p.dayHospital +"');"; 
-			      stmt.executeUpdate(sql);
-			      stmt.close();
-			      c.commit();
-			      c.close();
-			    } catch ( Exception e ) {
-			    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			    	System.exit(0);
-			    }
-		}
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void delete(Object t) {
-		if(t instanceof Ricovero){
-			Ricovero p=(Ricovero) t;
-			String key = p.codiceUnivoco;
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Ricovero WHERE Codice='"+ key +"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-		}
-	}
-	
-	public void delete(String key) {
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Ricovero WHERE Codice='"+ key +"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-	}
+
 	
 	
 	//mancano le foreign key.

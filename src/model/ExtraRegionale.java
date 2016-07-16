@@ -2,7 +2,6 @@ package model;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.util.LinkedList;
 
 public class ExtraRegionale extends Paziente{
 	
@@ -69,63 +68,5 @@ public class ExtraRegionale extends Paziente{
 		    }
 	}
 	
-	protected static LinkedList<ExtraRegionale> getRegionali(){
-		LinkedList<ExtraRegionale> result = new LinkedList<ExtraRegionale>();
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM FuoriRegione;" );
-		      while ( rs.next() ) {
-		         String  paziente = rs.getString(1);
-		         result.add(new ExtraRegionale(paziente));
-		      }
-		      rs.close();
-		      stmt.close();
-		      c.close();
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      return null;
-		    }
-		return result;
-		
-	}
-	
-	public void insert(Object t) {
-		if(t instanceof ExtraRegionale){
-			ExtraRegionale p=(ExtraRegionale)t;
-			try {
-			      Class.forName("org.sqlite.JDBC");
-			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			      c.setAutoCommit(false);
-			      stmt = c.createStatement();
-			      String sql = "INSERT INTO InRegione (Paziente,Ulss,Regione) " +
-			                   "VALUES ('"+p.getCodiceFiscale() +"','"+p.getUlss() +"','"+p.getRegione() +"');"; 
-			      stmt.executeUpdate(sql);
-			      stmt.close();
-			      c.commit();
-			      c.close();
-			    } catch ( Exception e ) {
-			    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			    	System.exit(0);
-			    }
-		}
 
-	}
-
-	public void delete(String key) {
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM InRegione WHERE Paziente='"+ key +"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-	}
 }
