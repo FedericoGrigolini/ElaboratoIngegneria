@@ -105,9 +105,9 @@ public class NuovaCartella extends JFrame {
 					campoLuogo.setText(paziente.getLuogaNascita());
 					campoProvincia.setText(paziente.getProvincia());
 					btnVerificaReg.setEnabled(true);
-
 				}else{
 					esiste=false;
+					System.out.println("Non Esiste");
 					campoNome.setEnabled(true);
 					campocCognome.setEnabled(true);
 					campoDataN.setEnabled(true);

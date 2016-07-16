@@ -87,7 +87,6 @@ public class Login {
 					System.out.println(user+" "+pass);
 					switch(control.LoginControl.autenticazione(user, pass)){
 					case -1:{
-						MenùAccettazione.main(null);
 						errorLabel.setVisible(true);
 						break;
 					}

@@ -31,10 +31,12 @@ public class AccettazioneControl {
 	public static boolean pazientePresente(String s){
 		for(Paziente p:new Tabella().getListaPazienti()){
 			System.out.println(s +" "+p.getCodiceFiscale());
-			if(p.getCodiceFiscale().length()==s.length() )
+			if(p.getCodiceFiscale().equals(s) ){
 				System.out.println("UGUALI");
 				return true;
+			}	
 		}
+		System.out.println("Diversi");
 		return false;
 	}
 }
