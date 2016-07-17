@@ -111,7 +111,9 @@ public class Login {
 					}
 					case 3:{
 						occupato=true;
+						id=passwordField.getText();
 						errorLabel.setVisible(false);
+						VistaOperatore.main(null);
 						break;
 					}
 					case 4:{

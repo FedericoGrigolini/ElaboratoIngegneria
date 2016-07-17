@@ -239,25 +239,8 @@ public class Intervento  {
 	}
 	
 	public void setOperatore(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Intervento "
-			      		+ "SET Operatore='"+ k +"' WHERE Codice_Intervento='"+ this.codice +"' AND Ricovero='"+this.ricovero.getCodiceUnivoco()+"' AND Operatore='"+this.operatore.getCodiceFiscale()+"';" );
-			      rs.close();
-		      stmt.close();
-		      c.close();
-		      this.operatore=new Operatore(k);
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
-		
+		      this.operatore=new Operatore(k);	
 	}
-	
-
 	
 	public void delete(String ric, String cod,String op ){
 		try {

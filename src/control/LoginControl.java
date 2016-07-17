@@ -44,7 +44,7 @@ public class LoginControl {
 		}
 		case "O.Sala":{
 			for(model.Operatore o: new model.Tabella().getListaOperatori()){
-				if(o.getCodiceFiscale()==pass){
+				if(o.getCodiceFiscale().equals(pass)){
 					return 3;
 				}
 			}

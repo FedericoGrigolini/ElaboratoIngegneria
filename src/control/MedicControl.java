@@ -17,7 +17,29 @@ public class MedicControl {
 	private static Connection c = null;
     private static Statement stmt = null;
     
-	public static String getCodiceIntervento(){
+	
+    public static LinkedList<String> getVeraListaInterventi(){
+    	LinkedList<String> res= new LinkedList<String>();
+    	try {
+			c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		    c.setAutoCommit(false);
+		    stmt = c.createStatement();
+		    ResultSet rs = stmt.executeQuery( "SELECT Ricovero, Codice_Intervento FROM Intervento INNER JOIN Ricovero ON Intervento.Ricovero=Ricovero.Codice;" );
+		    while ( rs.next() ) {
+		       res.add(rs.getString("Codice_Intervento"));
+		    	   
+		    }
+		    rs.close();
+		    stmt.close();
+		    c.close();
+		} catch ( Exception e ) {
+		   	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		   	return null;
+		}
+    	return res;
+    }
+    
+    public static String getCodiceIntervento(){
 		int cod=1;
 		try {
 			c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
@@ -32,7 +54,7 @@ public class MedicControl {
 		    c.close();
 		} catch ( Exception e ) {
 		   	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		   	System.exit(0);
+		   	return null;
 		}
 		String res="I"+String.format("%04d", cod);
 		return res;
