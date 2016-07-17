@@ -16,7 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 
-public class menùReparto extends JFrame {
+public class MenùReparto extends JFrame {
 	public static boolean occupato=false;
 	public static String reparto;
 	private JPanel contentPane;
@@ -30,7 +30,7 @@ public class menùReparto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					menùReparto frame = new menùReparto();
+					MenùReparto frame = new MenùReparto();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class menùReparto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public menùReparto() {
+	public MenùReparto() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 341, 224);
 		contentPane = new JPanel();
@@ -60,8 +60,8 @@ public class menùReparto extends JFrame {
 		btnPrenotazionePostRicovero.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!menùReparto.occupato){
-					menùReparto.occupato=true;
+				if(!MenùReparto.occupato){
+					MenùReparto.occupato=true;
 					PrenotazionePost.main(null);
 				}
 			}
@@ -84,8 +84,8 @@ public class menùReparto extends JFrame {
 		btnAssegnamentoLetti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!menùReparto.occupato){
-					menùReparto.occupato=true;
+				if(!MenùReparto.occupato){
+					MenùReparto.occupato=true;
 					GestioneLetti.main(null);
 				}
 			}
