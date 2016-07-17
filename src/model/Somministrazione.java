@@ -29,16 +29,20 @@ public class Somministrazione {
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
+		      boolean ok=false;
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Somministrazione;" );
 		      while ( rs.next() ) {
 		         if(rs.getString(1).equals(t) && rs.getString(2).equals(f) && rs.getString(3).equals(i)){
-		        	 this.terapia = new Terapia(rs.getString(1));
+		        	 ok=true;
+		        	 break;
+		         }
+		      }
+		      if(ok){
+		    	  this.terapia = new Terapia(rs.getString(1));
 		        	 this.farmaco = new Farmaco(f);
 		        	 this.infermiere = i;
 		        	 this.modalità=rs.getString(5);
 		        	 this.dose=new Integer(rs.getInt(4));
-		        	 break;
-		         }
 		      }
 		      rs.close();
 		      stmt.close();
@@ -141,7 +145,7 @@ public class Somministrazione {
 	}
 	
 	public String toString(){
-		return farmaco+" "+infermiere+" "+terapia+" "+modalità+" "+dose;
+		return " "+terapia/*.getRicovero().getCodiceUnivoco()*/+" "+farmaco.getNome();
 	}
 	
 	public static void main(String[] args) {

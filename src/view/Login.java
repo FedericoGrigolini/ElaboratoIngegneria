@@ -126,6 +126,8 @@ public class Login {
 					case 5:{
 						occupato=true;
 						errorLabel.setVisible(false);
+						id=passwordField.getText();
+						VistaInfermiere.main(null);
 						break;
 					}
 					}

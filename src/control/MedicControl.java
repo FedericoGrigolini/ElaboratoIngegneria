@@ -10,6 +10,7 @@ import java.util.Vector;
 import model.Farmaco;
 import model.Intervento;
 import model.Ricovero;
+import model.Somministrazione;
 import model.Tabella;
 import model.Terapia;
 
@@ -73,10 +74,6 @@ public class MedicControl {
 		return res;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(getCodiceIntervento());
-	}
-	
 	public static Vector<Ricovero> getRicoveriMedico(String key){
 		Vector<Ricovero> res = new Vector<Ricovero>() ;
 		for(Ricovero r:new Tabella().getListaRicoveri()){
@@ -98,6 +95,14 @@ public class MedicControl {
 			}	
 		}
 		return null;
+	}
+	
+	public static Vector<String> getListaSomministrazioniVera(){
+		Vector<String> res= new Vector<String>();
+    	for(Somministrazione s:new Tabella().getListaSomministrazioni()){
+    		res.addElement(s.getTerapia().getRicovero().getCodiceUnivoco()+" "+s.getFarmaco().getNome());
+    	}
+    	return res;
 	}
 	
 }

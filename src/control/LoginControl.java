@@ -54,7 +54,7 @@ public class LoginControl {
 		}
 		case "Infermiere":{
 			for(model.Infermiere i: new model.Tabella().getListaInfermieri()){
-				if(i.getCodiceFiscale()==pass){
+				if(i.getCodiceFiscale().equals(pass)){
 					return 5;
 				}
 				else return -1;
