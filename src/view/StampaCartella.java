@@ -30,8 +30,10 @@ public class StampaCartella extends JFrame {
 	private JPanel contentPane;
 	private JTextArea textArea;
 	private JComboBox comboBox;
-	private JScrollBar scrollBar;
 	private JButton btnEsci;
+	private JScrollPane scrollPane;
+	private JPanel panel;
+	private JPanel panel_1;
 
 	/**
 	 * Launch the application.
@@ -59,16 +61,42 @@ public class StampaCartella extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		textArea = new JTextArea();
-		
 		JLabel lblStampaCartellaClinica = new JLabel("Stampa cartella Clinica");
+		lblStampaCartellaClinica.setBounds(15, 16, 211, 22);
 		lblStampaCartellaClinica.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		
 		comboBox = new JComboBox<Ricovero>();
+		comboBox.setBounds(15, 45, 217, 21);
 		comboBox.setModel(new DefaultComboBoxModel(control.AccettazioneControl.listaRicoveriComboBox()) {
 		});
+		contentPane.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 94, 450, 453);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		contentPane.add(lblStampaCartellaClinica);
+		contentPane.add(comboBox);
+		
+		panel = new JPanel();
+		panel.setBounds(259, 44, 97, 23);
+		contentPane.add(panel);
 		
 		JButton btnStampa = new JButton("Stampa");
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(btnStampa, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(btnStampa)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
 		btnStampa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -77,9 +105,14 @@ public class StampaCartella extends JFrame {
 			}
 		});
 		
-		scrollBar = new JScrollBar();
+		panel_1 = new JPanel();
+		panel_1.setBounds(15, 557, 78, 23);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 		
 		btnEsci = new JButton("Esci");
+		btnEsci.setBounds(0, 0, 78, 23);
+		panel_1.add(btnEsci);
 		btnEsci.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -87,45 +120,6 @@ public class StampaCartella extends JFrame {
 				dispose();
 			}
 		});
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblStampaCartellaClinica, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
-							.addGap(27)
-							.addComponent(btnStampa)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnEsci)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblStampaCartellaClinica, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnStampa)
-						.addComponent(btnEsci))
-					.addGap(27)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
-							.addGap(70))))
-		);
-		contentPane.setLayout(gl_contentPane);
 	}
 	protected JTextArea getTextArea() {
 		return textArea;

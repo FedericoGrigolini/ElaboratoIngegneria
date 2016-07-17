@@ -13,7 +13,7 @@ public class LoginControl {
 			else return -1;
 		}
 		case "S.Reparto":{
-			if(pass=="admin"){
+			if(pass.equals("admin")){
 				return 1;
 			}
 			else return -1;

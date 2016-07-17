@@ -711,7 +711,7 @@ public class Tabella {
 			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
-			      String sql = "INSERT INTO PrenotazionePostRicovero (Ricovero,Data,Orario) " +
+			      String sql = "INSERT INTO PrenotazioniPostRicovero (Ricovero,Data,Orario) " +
 			                   "VALUES ('"+p.getRicovero().getCodiceUnivoco() +"','"+p.getData() +"','"+p.getOrario() +"');"; 
 			      stmt.executeUpdate(sql);
 			      stmt.close();
@@ -730,7 +730,7 @@ public class Tabella {
 			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			    c.setAutoCommit(false);
 			    stmt = c.createStatement();
-			    String sql = "DELETE FROM PrenotazionePostRicovero WHERE Nome='"+ key +"';";
+			    String sql = "DELETE FROM PrenotazioniPostRicovero WHERE Nome='"+ key +"';";
 			    stmt.executeUpdate(sql);
 			    c.commit();
 			}catch ( Exception e ) {

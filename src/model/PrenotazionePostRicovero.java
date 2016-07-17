@@ -14,6 +14,13 @@ public class PrenotazionePostRicovero{
 	private String data;
 	private String orario;
 	
+	public PrenotazionePostRicovero(Ricovero R,String d,String o) {
+		ricovero=R;
+		data=d;
+		orario=o;
+		// TODO Auto-generated constructor stub
+	}
+
 	public PrenotazionePostRicovero(String key){
 		try {
 		      Class.forName("org.sqlite.JDBC");
