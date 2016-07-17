@@ -12,7 +12,6 @@ import model.Farmaco;
 import model.Intervento;
 import model.Ricovero;
 import model.Somministrazione;
-import model.Tabella;
 import model.Terapia;
 
 public class GenericControl {

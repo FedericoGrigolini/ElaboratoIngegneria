@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.GenericControl;
+import control.Tabella;
 import model.Intervento;
-import model.Tabella;
 
 import java.awt.GridLayout;
 import java.util.Vector;

@@ -7,11 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import control.Tabella;
 import model.ExtraRegionale;
 import model.Medico;
 import model.Paziente;
 import model.Ricovero;
-import model.Tabella;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -167,7 +167,7 @@ public class NuovaCartella extends JFrame {
 		JLabel lblCodicePerIl = new JLabel("Codice per il ricovero");
 		
 		campoRicovero = new JTextField();
-		campoRicovero.setText("R"+String.format("%05d", new model.Tabella().getListaRicoveri().size()+1));
+		campoRicovero.setText("R"+String.format("%05d", new control.Tabella().getListaRicoveri().size()+1));
 		campoRicovero.setColumns(10);
 		campoRicovero.setEnabled(false);
 		

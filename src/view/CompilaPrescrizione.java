@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.GenericControl;
+import control.Tabella;
 import model.Farmaco;
 import model.Ricovero;
 import model.Somministrazione;
-import model.Tabella;
 import model.Terapia;
 
 import javax.swing.JLabel;

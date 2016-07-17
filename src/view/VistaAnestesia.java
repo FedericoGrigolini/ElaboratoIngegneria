@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.GenericControl;
+import control.Tabella;
 import model.*;
 import javax.swing.JLabel;
 import java.awt.Font;

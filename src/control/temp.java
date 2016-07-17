@@ -60,7 +60,7 @@ public class temp extends JFrame {
 		
 		comboBox = new JComboBox<Medico>();
 		Vector<Medico> v = new Vector<Medico>();
-		for(Medico m:new model.Tabella().getListaMedici()){
+		for(Medico m:new control.Tabella().getListaMedici()){
 			v.addElement(m);
 		}
 		

@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.GenericControl;
+import control.Tabella;
 import model.Intervento;
 import model.Ricovero;
-import model.Tabella;
 
 import javax.swing.JLabel;
 import java.awt.Font;

@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import control.Tabella;
 import model.Ricovero;
-import model.Tabella;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

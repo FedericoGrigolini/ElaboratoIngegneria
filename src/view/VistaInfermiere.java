@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import control.Tabella;
 import model.Somministrazione;
-import model.Tabella;
 
 import javax.swing.JLabel;
 import java.awt.Font;

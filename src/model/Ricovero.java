@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.LinkedList;
 
+import control.Tabella;
+
 
 public class Ricovero {
 	protected static Connection c = null;

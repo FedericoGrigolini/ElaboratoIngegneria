@@ -1,7 +1,5 @@
 package control;
 
-import model.Tabella;
-
 public class prova {
 	public static void main( String args[] ){
 		for(model.Paziente p: new Tabella().getListaPazienti()){
@@ -11,7 +9,7 @@ public class prova {
 		System.out.println();
 		
 		System.out.println();
-		for(model.Medico m: new model.Tabella().getListaMedici()){
+		for(model.Medico m: new control.Tabella().getListaMedici()){
 			System.out.println(m.getNome()+" "+m.getCognome());
 		}
 		
