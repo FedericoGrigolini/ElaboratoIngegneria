@@ -55,9 +55,9 @@ public class VistaOperatore extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblMenOperatore = new JLabel("Men\u00F9 Operatore");
+		JLabel lblMenOperatore = new JLabel("Men\u00F9 Operatore di Sala");
 		lblMenOperatore.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		lblMenOperatore.setBounds(48, 11, 140, 22);
+		lblMenOperatore.setBounds(22, 11, 213, 22);
 		contentPane.add(lblMenOperatore);
 		
 		comboBox = new JComboBox();

@@ -119,6 +119,8 @@ public class Login {
 					case 4:{
 						occupato=true;
 						errorLabel.setVisible(false);
+						id=passwordField.getText();
+						VistaAnestesia.main(args);
 						break;
 					}
 					case 5:{
