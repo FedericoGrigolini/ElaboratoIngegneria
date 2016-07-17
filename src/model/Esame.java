@@ -25,9 +25,9 @@ public class Esame {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Esame;" );
 		      while ( rs.next() ) {
-		    	  if(rs.getString("TipoEsame")==kt && rs.getString("Ricovero")==kr){
+		    	  if(rs.getString("TipoEsame").equals(kt) && rs.getString("Ricovero").equals(kr)){
 		    		  this.tipo= kt;
-				      this.ricovero=new Ricovero(kr);
+				      this.ricovero=new Ricovero(rs.getString("Ricovero"));
 				      this.risultati=rs.getString("Risultati");
 				      break;
 		    	  }
@@ -60,7 +60,7 @@ public class Esame {
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "UPDATE Esame "
-		      		+ "SET Tipo='"+ k +"' WHERE Tipo='"+ this.tipo +"' AND Ricovero='"+this.ricovero.getCodiceUnivoco()+"';" );
+		      		+ "SET Tipo='"+ k +"' WHERE TipoEsame='"+ this.tipo +"' AND Ricovero='"+this.ricovero.getCodiceUnivoco()+"';" );
 		      rs.close();
 		      stmt.close();
 		      c.close();
@@ -79,7 +79,7 @@ public class Esame {
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "UPDATE Esame "
-		      		+ "SET Ricovero='"+ k +"' WHERE Tipo='"+ this.tipo +"' AND Ricovero='"+this.ricovero.getCodiceUnivoco()+"';" );
+		      		+ "SET Ricovero='"+ k +"' WHERE TipoEsame='"+ this.tipo +"' AND Ricovero='"+this.ricovero.getCodiceUnivoco()+"';" );
 		      rs.close();
 		      stmt.close();
 		      c.close();
@@ -97,7 +97,7 @@ public class Esame {
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "UPDATE Esame "
-			      		+ "SET Risultati='"+ k +"' WHERE Tipo='"+ this.tipo +"' AND Ricovero='"+this.ricovero.getCodiceUnivoco()+"';" );
+			      		+ "SET Risultati='"+ k +"' WHERE TipoEsame='"+ this.tipo +"' AND Ricovero='"+this.ricovero.getCodiceUnivoco()+"';" );
 			      rs.close();
 		      stmt.close();
 		      c.close();
@@ -109,64 +109,6 @@ public class Esame {
 		
 	}
 	
-	public LinkedList<Esame> getListaEsami(){
-		LinkedList<Esame> result = new LinkedList<Esame>();
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Esame;" );
-		      while ( rs.next() ) {
-		         String  tipo = rs.getString("Tipo");
-		         String  ricovero = rs.getString("Ricovero");
-		         result.add(new Esame(tipo, ricovero));
-		      }
-		      rs.close();
-		      stmt.close();
-		      c.close();
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      return null;
-		    }
-		return result;
-	}
-	
-
-	public void insertEsame(Object t) {
-		if(t instanceof Esame){
-			Esame p=(Esame)t;
-			try {
-			      Class.forName("org.sqlite.JDBC");
-			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			      c.setAutoCommit(false);
-			      stmt = c.createStatement();
-			      String sql = "INSERT INTO Esame (Tipo,Ricovero,Risultati) " +
-			                   "VALUES ('"+p.getTipo() + "','"+p.getRicovero().getCodiceUnivoco() + "','" + p.getRisultati() + "');"; 
-			      stmt.executeUpdate(sql);
-			      stmt.close();
-			      c.commit();
-			      c.close();
-			    } catch ( Exception e ) {
-			    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			    	System.exit(0);
-			    }
-		}
-	}
-	public void deleteOperatore(String k, String kr){
-			try {
-				Class.forName("org.sqlite.JDBC");
-			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-			    c.setAutoCommit(false);
-			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Esame WHERE Tipo='"+ k +"' AND Ricovero='"+kr+"';";
-			    stmt.executeUpdate(sql);
-			    c.commit();
-			}catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }			
-	}
 	
 	public String toString(){
 		return "Tipo Esame: "+tipo+

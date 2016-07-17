@@ -84,7 +84,6 @@ public class Login {
 				if(!occupato){
 					String user=userField.getText();
 					String pass=passwordField.getText();
-					System.out.println(user+" "+pass);
 					switch(control.LoginControl.autenticazione(user, pass)){
 					case -1:{
 						errorLabel.setVisible(true);

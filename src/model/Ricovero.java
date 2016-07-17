@@ -39,9 +39,9 @@ public class Ricovero {
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Medico;" );
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Ricovero;" );
 		      while ( rs.next() ) {
-		    	  if(rs.getString("Codice")==key){
+		    	  if(rs.getString("Codice").equals(key)){
 		    		  this.codiceUnivoco = rs.getString("Codice");
 		    		  this.dataInizio = rs.getString("Data_I");
 		 	          this.dataFine = rs.getString("Data_F");
@@ -255,6 +255,10 @@ public class Ricovero {
 	}
 	
 	public String toString(){
+		return " "+this.codiceUnivoco+" "+paziente.getNome()+" "+paziente.getCognome(); 
+	}
+	
+	public String stampa(){
 		return "Codice Univoco: "+this.codiceUnivoco+"  Divisione: "+this.divisione+
 				"\nData Inizio: "+this.dataInizio+"   Data Fine: "+this.dataFine+
 				"\nPaziente: "+this.paziente+

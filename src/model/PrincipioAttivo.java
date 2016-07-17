@@ -19,7 +19,7 @@ public class PrincipioAttivo {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM PrincipioAttivo;" );
 		      while ( rs.next() ) {
-		         if(nome==rs.getString(1)){
+		         if(rs.getString(1).equals(nome)){
 		        	 this.nome=nome;
 		        	 break;
 		         }

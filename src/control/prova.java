@@ -9,9 +9,7 @@ public class prova {
 		}
 		
 		System.out.println();
-		for(String s: control.AccettazioneControl.listaPazientiComboBox()){
-			System.out.println(s);
-		}
+		
 		System.out.println();
 		for(model.Medico m: new model.Tabella().getListaMedici()){
 			System.out.println(m.getNome()+" "+m.getCognome());

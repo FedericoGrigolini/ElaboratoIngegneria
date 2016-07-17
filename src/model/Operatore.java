@@ -31,7 +31,7 @@ public class Operatore{
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Operatore;" );
 		      while ( rs.next() ) {
-		    	  if(rs.getString("CodiceFiscale")==key){
+		    	  if(rs.getString("CodiceFiscale").equals(key)){
 		    		  this.codiceFiscale= rs.getString("CodiceFiscale");
 				      this.nome = rs.getString("Nome");
 				      this.cognome= rs.getString("Cognome");

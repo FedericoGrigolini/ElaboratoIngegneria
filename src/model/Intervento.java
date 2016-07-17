@@ -39,7 +39,7 @@ public class Intervento  {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Intervento;" );
 		      while ( rs.next() ) {
-		    	  if(rs.getString("Ricovero")==kr && rs.getString("Codice_Intervento")==kc && rs.getString("Operatore")==ko){
+		    	  if(rs.getString("Ricovero").equals(kr) && rs.getString("Codice_Intervento").equals(kc) && rs.getString("Operatore").equals(ko)){
 		    		  this.codice=kc;
 		    		  this.tipo= rs.getString("Tipo");
 				      this.ricovero=new Ricovero(kr);

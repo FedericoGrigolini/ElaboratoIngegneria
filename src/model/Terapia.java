@@ -21,8 +21,8 @@ public class Terapia {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Terapia;" );
 		      while ( rs.next() ) {
-		         if(k==rs.getString(1)){
-		        	 this.ricovero=new Ricovero(k);
+		         if(rs.getString(1).equals(k)){
+		        	 this.ricovero=new Ricovero(rs.getString(1));
 		        	 this.dataInizio=rs.getString(2);
 		        	 this.dataFine=rs.getString(3);
 		        	 break;
@@ -92,7 +92,10 @@ public class Terapia {
 		      System.exit(0);
 		    }
 	}
-
+	
+	public String toString(){
+		return ricovero+" "+dataInizio+" "+dataFine;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

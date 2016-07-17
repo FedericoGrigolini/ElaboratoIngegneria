@@ -31,8 +31,8 @@ public class Somministrazione {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Somministrazione;" );
 		      while ( rs.next() ) {
-		         if(t==rs.getString(1) && f==rs.getString(2) && i==rs.getString(3)){
-		        	 this.terapia = new Terapia(t);
+		         if(rs.getString(1).equals(t) && rs.getString(2).equals(f) && rs.getString(3).equals(i)){
+		        	 this.terapia = new Terapia(rs.getString(1));
 		        	 this.farmaco = new Farmaco(f);
 		        	 this.infermiere = new Infermiere(i);
 		        	 this.modalità=rs.getString(5);
@@ -150,7 +150,10 @@ public class Somministrazione {
 		      System.exit(0);
 		    }
 	}
-
+	
+	public String toString(){
+		return farmaco+" "+infermiere+" "+terapia+" "+modalità+" "+dose;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

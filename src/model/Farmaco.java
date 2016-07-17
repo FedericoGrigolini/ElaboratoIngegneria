@@ -28,7 +28,7 @@ public class Farmaco {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Farmaco;" );
 		      while ( rs.next() ) {
-		         if(nome==rs.getString(1)){
+		         if(rs.getString(1).equals(nome)){
 		        	 this.nome=nome;
 		        	 this.azienda=rs.getString(2);
 		        	 this.dosaggioRaccomandato= new Integer(rs.getInt(3));
@@ -151,7 +151,10 @@ public class Farmaco {
 		    }
 		return null;
 	}	
-
+	
+	public String toString(){
+		return nome+" "+azienda;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

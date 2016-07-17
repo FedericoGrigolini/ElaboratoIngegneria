@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.ExtraRegionale;
+import model.Medico;
 import model.Paziente;
 import model.Ricovero;
 import model.Tabella;
@@ -20,23 +21,15 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JTable;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.LinkedList;
+import java.util.Vector;
 
 public class NuovaCartella extends JFrame {
 	private Paziente paziente;
 	private Ricovero ricovero;
-	public static String Ulss;
-	public static String Regione;
 	private boolean esiste;
 	
 	private JPanel contentPane;
@@ -56,6 +49,10 @@ public class NuovaCartella extends JFrame {
 	private JButton buttonCartellaExtra;
 	private JRadioButton rdbtnDayHospital ;
 	private JComboBox comboBox;
+	private JLabel lblRegione;
+	private JTextField CampoRegione;
+	private JLabel lblUlss;
+	private JTextField campoUlss;
 	/**
 	 * Launch the application.
 	 */
@@ -95,7 +92,6 @@ public class NuovaCartella extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(control.AccettazioneControl.pazientePresente(campoCodice.getText())){
-					System.out.println("Esiste");
 					String s=campoCodice.getText();
 					paziente = new model.Paziente(s);
 					esiste=true;
@@ -107,7 +103,6 @@ public class NuovaCartella extends JFrame {
 					btnVerificaReg.setEnabled(true);
 				}else{
 					esiste=false;
-					System.out.println("Non Esiste");
 					campoNome.setEnabled(true);
 					campocCognome.setEnabled(true);
 					campoDataN.setEnabled(true);
@@ -157,8 +152,11 @@ public class NuovaCartella extends JFrame {
 		 				||campoProvincia.getText().equals("Rovigo")){
 		 			btnCreaCartellaClinica.setEnabled(true);
 		 			buttonCartellaExtra.setEnabled(false);
+		 			CampoRegione.setEnabled(false);
+		 			campoUlss.setEnabled(false);
 		 		}else{
-		 			cartellaExtraRegione.main(null);
+		 			CampoRegione.setEnabled(true);
+		 			campoUlss.setEnabled(true);
 		 			btnCreaCartellaClinica.setEnabled(false);
 		 			buttonCartellaExtra.setEnabled(true);
 		 		}
@@ -169,7 +167,7 @@ public class NuovaCartella extends JFrame {
 		JLabel lblCodicePerIl = new JLabel("Codice per il ricovero");
 		
 		campoRicovero = new JTextField();
-		campoRicovero.setText("R"+String.format("%04d", new model.Tabella().getListaRicoveri().size()+1));
+		campoRicovero.setText("R"+String.format("%05d", new model.Tabella().getListaRicoveri().size()+1));
 		campoRicovero.setColumns(10);
 		campoRicovero.setEnabled(false);
 		
@@ -186,9 +184,10 @@ public class NuovaCartella extends JFrame {
 		JLabel lblMedicoDiRiferimeto = new JLabel("Medico di Riferimeto");
 		
 
-		comboBox = new JComboBox();
-		comboBox.setMaximumRowCount(40);
-		comboBox.setModel(new DefaultComboBoxModel(control.AccettazioneControl.listaMediciComboBox()));
+		comboBox = new JComboBox<Medico>();
+
+		comboBox.setModel(new DefaultComboBoxModel(control.AccettazioneControl.listaMediciComboBox()) {
+		});
 		
 		JLabel lblNewLabel_1 = new JLabel("Motivo");
 		
@@ -212,7 +211,8 @@ public class NuovaCartella extends JFrame {
 					temp.insertPaziente(paziente);
 					temp.insertRegionale((model.Regionale)paziente);
 				}
-				ricovero=new Ricovero(campoRicovero.getText(), campoDivisione.getText(), campoDataI.getText(), campoDataF.getText(), paziente.getCodiceFiscale(), campoMotivo.getText(), comboBox.getSelectedItem().toString(), null, rdbtnDayHospital.isSelected() ); 
+				Medico m=(Medico)comboBox.getSelectedItem();
+				ricovero=new Ricovero(campoRicovero.getText(), campoDivisione.getText(), campoDataI.getText(), campoDataF.getText(), paziente.getCodiceFiscale(), campoMotivo.getText(), m.getCodiceFiscale(), null, rdbtnDayHospital.isSelected() ); 
 				temp.insertRicovero(ricovero);
 				MenùAccettazione.occupato=false;
 				dispose();
@@ -228,10 +228,11 @@ public class NuovaCartella extends JFrame {
 				if(!esiste){
 					paziente=new Paziente(campoCodice.getText(), campoNome.getText(), campocCognome.getText(), campoDataN.getText(), campoLuogo.getText(), campoProvincia.getText());
 					temp.insertPaziente(paziente);
-					ExtraRegionale ex=new ExtraRegionale(paziente.getCodiceFiscale(), paziente.getNome(), paziente.getCognome(), paziente.getDataNascita(), paziente.getDataNascita(), paziente.getProvincia(), Ulss, Regione);
+					ExtraRegionale ex=new ExtraRegionale(paziente.getCodiceFiscale(), paziente.getNome(), paziente.getCognome(), paziente.getDataNascita(), paziente.getDataNascita(), paziente.getProvincia(), campoUlss.getText(), CampoRegione.getText());
 					temp.insertExtraRegionale(ex);
 				}
-				ricovero=new Ricovero(campoRicovero.getText(), campoDivisione.getText(), campoDataI.getText(), campoDataF.getText(), paziente.getCodiceFiscale(), campoMotivo.getText(), comboBox.getSelectedItem().toString(), null, rdbtnDayHospital.isSelected() ); 
+				Medico m=(Medico)comboBox.getSelectedItem();
+				ricovero=new Ricovero(campoRicovero.getText(), campoDivisione.getText(), campoDataI.getText(), campoDataF.getText(), paziente.getCodiceFiscale(), campoMotivo.getText(), m.getCodiceFiscale() , null, rdbtnDayHospital.isSelected() ); 
 				temp.insertRicovero(ricovero);
 				MenùAccettazione.occupato=false;
 				dispose();
@@ -247,6 +248,18 @@ public class NuovaCartella extends JFrame {
 				dispose();
 			}
 		});
+		
+		lblRegione = new JLabel("Regione");
+		
+		CampoRegione = new JTextField();
+		CampoRegione.setEnabled(false);
+		CampoRegione.setColumns(10);
+		
+		lblUlss = new JLabel("Ulss");
+		
+		campoUlss = new JTextField();
+		campoUlss.setEnabled(false);
+		campoUlss.setColumns(10);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -286,7 +299,18 @@ public class NuovaCartella extends JFrame {
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(campoProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(18)
-									.addComponent(btnVerificaReg))
+									.addComponent(btnVerificaReg)))
+							.addGap(51))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnCreaCartellaClinica)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(buttonCartellaExtra)
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnEsci)
+							.addContainerGap(425, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblCodicePerIl)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -314,13 +338,15 @@ public class NuovaCartella extends JFrame {
 									.addGap(18)
 									.addComponent(comboBox, 0, 311, Short.MAX_VALUE)))
 							.addGap(51))
-						.addComponent(btnCreaCartellaClinica)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(buttonCartellaExtra)
-							.addContainerGap(309, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnEsci)
-							.addContainerGap(387, Short.MAX_VALUE))))
+							.addComponent(lblRegione)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(CampoRegione, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(34)
+							.addComponent(lblUlss)
+							.addGap(18)
+							.addComponent(campoUlss, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(184, Short.MAX_VALUE))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -349,7 +375,13 @@ public class NuovaCartella extends JFrame {
 						.addComponent(lblProvincia)
 						.addComponent(campoProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnVerificaReg))
-					.addGap(39)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblRegione)
+						.addComponent(CampoRegione, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblUlss)
+						.addComponent(campoUlss, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(29)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCodicePerIl)
 						.addComponent(campoRicovero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -372,13 +404,13 @@ public class NuovaCartella extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_2)
 						.addComponent(campoDivisione, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(27)
-					.addComponent(btnCreaCartellaClinica)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(buttonCartellaExtra)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(34)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCreaCartellaClinica)
+						.addComponent(buttonCartellaExtra))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnEsci)
-					.addContainerGap(136, Short.MAX_VALUE))
+					.addContainerGap(28, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

@@ -22,7 +22,7 @@ public class PrenotazionePostRicovero{
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM PrenotazioniPostRicovero;" );
 		      while ( rs.next() ) {
-		         if(key==rs.getString(1)){
+		         if(rs.getString(1).equals(key)){
 		        	 this.ricovero=new Ricovero(key);
 		        	 this.data=rs.getString(2);
 		        	 this.orario=rs.getString(3);

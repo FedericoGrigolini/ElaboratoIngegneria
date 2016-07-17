@@ -73,11 +73,14 @@ public class Tabella {
 			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
-			      String sql = "INSERT INTO Ricovero (CodiceFiscale,Data_I,Data_F,Motivo,Paziente,Divisione,Letto,Medico_Res,dayHospital) " +
+			      int h=0;
+			      if(p.getDayHospital())
+			    	  h=1;
+			      String sql = "INSERT INTO Ricovero (Codice,Data_I,Data_F,Motivo,Paziente,Divisione,Letto,Medico_Res,dayHospital) " +
 			                   "VALUES ('"+p.getCodiceUnivoco() + "','"+p.getDataInizio() + "','" + p.getDataFine() + "','" +p.getMotivo()+
-			                   "','"+ p.getPaziente().getCodiceFiscale() + "','"+ p.getDivisione() + "','"+ p.getLetto() + "','"+ p.getMedicoResponsabile().getCodiceFiscale()+
-			                   p.getDayHospital() +"');"; 
-			      stmt.executeUpdate(sql);
+			                   "','"+ p.getPaziente().getCodiceFiscale() + "','"+ p.getDivisione() + "','"+ p.getLetto() + 
+			                   "','"+ p.getMedicoResponsabile().getCodiceFiscale()+ "','"+ h +"');"; 
+			      stmt.executeUpdate(sql); 
 			      stmt.close();
 			      c.commit();
 			      c.close();
@@ -450,7 +453,7 @@ public class Tabella {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Esame;" );
 		      while ( rs.next() ) {
-		         String  tipo = rs.getString("Tipo");
+		         String  tipo = rs.getString("TipoEsame");
 		         String  ricovero = rs.getString("Ricovero");
 		         result.add(new Esame(tipo, ricovero));
 		      }
@@ -471,7 +474,7 @@ public class Tabella {
 			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
-			      String sql = "INSERT INTO Esame (Tipo,Ricovero,Risultati) " +
+			      String sql = "INSERT INTO Esame (TipoEsame,Ricovero,Risultati) " +
 			                   "VALUES ('"+p.getTipo() + "','"+p.getRicovero().getCodiceUnivoco() + "','" + p.getRisultati() + "');"; 
 			      stmt.executeUpdate(sql);
 			      stmt.close();
@@ -489,7 +492,7 @@ public class Tabella {
 			    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			    c.setAutoCommit(false);
 			    stmt = c.createStatement();
-			    String sql = "DELETE FROM Esame WHERE Tipo='"+ k +"' AND Ricovero='"+kr+"';";
+			    String sql = "DELETE FROM Esame WHERE TipoEsame='"+ k +"' AND Ricovero='"+kr+"';";
 			    stmt.executeUpdate(sql);
 			    c.commit();
 			}catch ( Exception e ) {

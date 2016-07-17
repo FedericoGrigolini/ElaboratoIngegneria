@@ -21,7 +21,7 @@ public class Medico extends Operatore {
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Medico;" );
 		      while ( rs.next() ) {
-		    	  if(rs.getString("Operatore")==key){
+		    	  if(rs.getString("Operatore").equals(key)){
 		    		  this.Specialità= rs.getString("Specialità");
 				      break;
 		    	  }
@@ -60,8 +60,11 @@ public class Medico extends Operatore {
 		    }
 		
 	}
-	
 	public String toString(){
+		return codiceFiscale+" "+nome+" "+cognome;
+	}
+	
+	public String stampa(){
 		return "Codice Fiscale: "+this.codiceFiscale+
 				"\nNome e Cognome: "+ this.nome +"  "+this.cognome+
 				"\nLuogo e Data Nascita: "+ this.luogoNascita +"  "+this.dataNascita +
