@@ -28,11 +28,13 @@ public class LoginControl {
 		}
 		case "M.Anestesia":{
 			for(model.Medico r: new model.Tabella().getListaMedici()){
-				if(r.getCodiceFiscale()==pass ){
-					if(r.getSpecialità()=="Anestesia"){
+				if(r.getCodiceFiscale().equals(pass) ){
+					System.out.println(pass+" "+r.getSpecialità());
+					if(r.getSpecialità().equals("Anestesia")){
+						System.out.println(pass);
 						for(model.Intervento i: new model.Tabella().getListaInterventi()){
 							for(model.Operatore o: i.getOperatoriSala()){
-								if(r.getCodiceFiscale()==o.getCodiceFiscale()){
+								if(r.getCodiceFiscale().equals(o.getCodiceFiscale())){
 									return 4;
 								}
 							}

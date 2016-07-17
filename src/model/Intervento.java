@@ -62,7 +62,7 @@ public class Intervento  {
 	}
 	
     public String getOperatore(){
-		return this.codice;
+		return this.operatore.codiceFiscale;
 	}
     public String getData(){
     	return data;
@@ -96,7 +96,7 @@ public class Intervento  {
 		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT Operatore FROM Intervento WHERE Ricovero='"+ this.getRicovero().getCodiceUnivoco() +"AND Codice_Intervento='"+ this.getCodiceIntervento() +"';" );
+		      ResultSet rs = stmt.executeQuery( "SELECT Operatore FROM Intervento WHERE Ricovero='"+ this.getRicovero().getCodiceUnivoco() +"' AND Codice_Intervento='"+ this.getCodiceIntervento() +"';" );
 		      while ( rs.next() ) {
 		    	  String operatore=rs.getString("Operatore");
 				  result.add(new Operatore(operatore));
@@ -111,6 +111,8 @@ public class Intervento  {
 		return result;
 		
 	}
+	
+	public void setAnestesia(String key){this.anestesia=key;}
 	
 	public void setCodice(String key){
 		try {

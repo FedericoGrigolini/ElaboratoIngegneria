@@ -120,7 +120,7 @@ public class Login {
 						occupato=true;
 						errorLabel.setVisible(false);
 						id=passwordField.getText();
-						VistaAnestesia.main(args);
+						VistaAnestesia.main(null);
 						break;
 					}
 					case 5:{

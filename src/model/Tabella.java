@@ -386,6 +386,21 @@ public class Tabella {
 		    	System.exit(0);
 		    }			
 	}
+	
+	public void deleteIntervento(String ric, String cod ,String op){
+		try {
+			Class.forName("org.sqlite.JDBC");
+		    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		    c.setAutoCommit(false);
+		    stmt = c.createStatement();
+		    String sql = "DELETE FROM Intervento WHERE Codice_Intervento='"+ cod +"' AND Ricovero='"+ric+"' AND Operatore='"+op+"';";
+		    stmt.executeUpdate(sql);
+		    c.commit();
+		}catch ( Exception e ) {
+	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	System.exit(0);
+	    }			
+}
 	//Farmaco
 	public LinkedList<Farmaco> getListaFarmaci(){
 	LinkedList<Farmaco> result = new LinkedList<Farmaco>();

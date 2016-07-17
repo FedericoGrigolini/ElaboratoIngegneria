@@ -26,7 +26,20 @@ public class MedicControl {
 		    stmt = c.createStatement();
 		    ResultSet rs = stmt.executeQuery( "SELECT Ricovero, Codice_Intervento FROM Intervento INNER JOIN Ricovero ON Intervento.Ricovero=Ricovero.Codice;" );
 		    while ( rs.next() ) {
-		       res.add(rs.getString("Codice_Intervento"));
+		    	boolean temp =true;
+		    	if(res.isEmpty()){
+		    		res.add(rs.getString("Codice_Intervento"));
+		    	}else{
+		    		for(String s:res){
+		    			if(s.equals(rs.getString("Codice_Intervento"))){
+		    				temp=false;
+		    			}
+		    		}
+		    		if(temp){
+		    			res.add(rs.getString("Codice_Intervento"));
+		    		}
+		    	}
+		       
 		    	   
 		    }
 		    rs.close();
