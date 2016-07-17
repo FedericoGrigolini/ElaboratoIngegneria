@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.MedicControl;
+import control.GenericControl;
 import model.Intervento;
 import model.Ricovero;
 import model.Tabella;
@@ -72,7 +72,7 @@ public class CompilaIntervento extends JFrame {
 		
 		comboBox = new JComboBox();
 		comboBox.setBounds(122, 43, 215, 22);
-		comboBox.setModel(new DefaultComboBoxModel(control.MedicControl.getRicoveriMedico(Login.id)));
+		comboBox.setModel(new DefaultComboBoxModel(control.GenericControl.getRicoveriMedico(Login.id)));
 		contentPane.add(comboBox);
 		
 		JButton btnScelta = new JButton("Scelta");
@@ -101,7 +101,7 @@ public class CompilaIntervento extends JFrame {
 		contentPane.add(lblCodiceIntervento);
 		
 		campoCodice = new JTextField();
-		campoCodice.setText(MedicControl.getCodiceIntervento());
+		campoCodice.setText(GenericControl.getCodiceIntervento());
 		campoCodice.setEditable(false);
 		campoCodice.setBounds(122, 93, 86, 20);
 		contentPane.add(campoCodice);

@@ -67,7 +67,7 @@ public class StampaCartella extends JFrame {
 		
 		comboBox = new JComboBox<Ricovero>();
 		comboBox.setBounds(15, 45, 217, 21);
-		comboBox.setModel(new DefaultComboBoxModel(control.AccettazioneControl.listaRicoveriComboBox()) {
+		comboBox.setModel(new DefaultComboBoxModel(control.SegreterieControl.listaRicoveriComboBox()) {
 		});
 		contentPane.setLayout(null);
 		
@@ -101,7 +101,7 @@ public class StampaCartella extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Ricovero r=(Ricovero) comboBox.getSelectedItem();
-				textArea.setText(control.AccettazioneControl.CartellaClinica(r));
+				textArea.setText(control.SegreterieControl.CartellaClinica(r));
 			}
 		});
 		

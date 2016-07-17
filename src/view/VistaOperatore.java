@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.MedicControl;
+import control.GenericControl;
 import model.Intervento;
 import model.Tabella;
 
@@ -61,7 +61,7 @@ public class VistaOperatore extends JFrame {
 		contentPane.add(lblMenOperatore);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel( new Vector<String>(MedicControl.getVeraListaInterventi() )));
+		comboBox.setModel(new DefaultComboBoxModel( new Vector<String>(GenericControl.getVeraListaInterventi() )));
 		comboBox.setBounds(22, 67, 213, 22);
 		contentPane.add(comboBox);
 		

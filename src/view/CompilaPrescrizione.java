@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.MedicControl;
+import control.GenericControl;
 import model.Farmaco;
 import model.Ricovero;
 import model.Somministrazione;
@@ -70,7 +70,7 @@ public class CompilaPrescrizione extends JFrame {
 		contentPane.add(lblCompilaPrescrizioneTerapia);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(control.MedicControl.getRicoveriMedico(Login.id)));
+		comboBox.setModel(new DefaultComboBoxModel(control.GenericControl.getRicoveriMedico(Login.id)));
 		comboBox.setBounds(170, 40, 215, 22);
 		contentPane.add(comboBox);
 		
@@ -83,7 +83,7 @@ public class CompilaPrescrizione extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ric=(Ricovero)comboBox.getSelectedItem();
-				ter=control.MedicControl.esisteTerapia(ric);
+				ter=control.GenericControl.esisteTerapia(ric);
 				if(ter==null){
 					campoInizio.setEnabled(true);
 					campoFine.setEnabled(true);
@@ -123,7 +123,7 @@ public class CompilaPrescrizione extends JFrame {
 		
 		comboBox_1 = new JComboBox();
 		comboBox_1.setEnabled(false);
-		comboBox_1.setModel(new DefaultComboBoxModel(MedicControl.listaFarmaci()));
+		comboBox_1.setModel(new DefaultComboBoxModel(GenericControl.listaFarmaci()));
 		comboBox_1.setBounds(81, 122, 121, 17);
 		contentPane.add(comboBox_1);
 		

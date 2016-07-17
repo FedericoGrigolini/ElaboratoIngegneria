@@ -9,7 +9,7 @@ import java.util.Vector;
 
 import model.*;
 
-public class AccettazioneControl {
+public class SegreterieControl {
 	
 	private static String ricoveroCartella(Ricovero r){
 		String res="Reparto: "+r.getDivisione()+" Letto: "+ r.getLetto()+" Day Hospital: "+r.getDayHospital()+

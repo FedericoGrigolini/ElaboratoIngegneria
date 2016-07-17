@@ -56,7 +56,7 @@ public class GestioneLetti extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboBox = new JComboBox<Ricovero>();
-		comboBox.setModel(new DefaultComboBoxModel(control.AccettazioneControl.listaRicoveriComboBox()));
+		comboBox.setModel(new DefaultComboBoxModel(control.SegreterieControl.listaRicoveriComboBox()));
 		comboBox.setBounds(78, 38, 179, 20);
 		contentPane.add(comboBox);
 		

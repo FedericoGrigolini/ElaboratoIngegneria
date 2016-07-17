@@ -46,13 +46,16 @@ public class MenùAccettazione extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel label = new JLabel("Segreteria Accettazione");
+		label.setBounds(15, 16, 236, 48);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		
 		JLabel label_1 = new JLabel("Scegliere un opzione");
+		label_1.setBounds(25, 70, 116, 17);
 		label_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
 		JButton button = new JButton("Nuova Cartella Clinica");
+		button.setBounds(53, 98, 141, 23);
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -64,6 +67,7 @@ public class MenùAccettazione extends JFrame {
 		});
 		
 		JButton button_1 = new JButton("Stampa Cartella Clinica");
+		button_1.setBounds(53, 127, 141, 23);
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -75,6 +79,7 @@ public class MenùAccettazione extends JFrame {
 		});
 		
 		JButton button_2 = new JButton("Logout");
+		button_2.setBounds(53, 185, 141, 23);
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,42 +89,22 @@ public class MenùAccettazione extends JFrame {
 		});
 		
 		JButton btnRimborsi = new JButton("Richiesta Rimborsi");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(38)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(button, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-								.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-								.addComponent(btnRimborsi, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
-					.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(button)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(button_1)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnRimborsi)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(button_2)
-					.addGap(33))
-		);
-		contentPane.setLayout(gl_contentPane);
+		btnRimborsi.setBounds(53, 156, 141, 23);
+		btnRimborsi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!MenùAccettazione.occupato){
+					MenùAccettazione.occupato=true;
+					RichiestaRimborsi.main(null);
+				}
+			}
+		});
+		contentPane.setLayout(null);
+		contentPane.add(label);
+		contentPane.add(label_1);
+		contentPane.add(button);
+		contentPane.add(button_1);
+		contentPane.add(btnRimborsi);
+		contentPane.add(button_2);
 	}
 }

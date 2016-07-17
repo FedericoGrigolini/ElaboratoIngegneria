@@ -145,7 +145,7 @@ public class Somministrazione {
 	}
 	
 	public String toString(){
-		return " "+terapia/*.getRicovero().getCodiceUnivoco()*/+" "+farmaco.getNome();
+		return " "+terapia.getRicovero().getCodiceUnivoco()+" "+farmaco.getNome();
 	}
 	
 	public static void main(String[] args) {

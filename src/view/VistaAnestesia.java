@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.MedicControl;
+import control.GenericControl;
 import model.*;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -60,7 +60,7 @@ public class VistaAnestesia extends JFrame {
 		contentPane.add(lblMenAnestesista);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel( new Vector<String>(MedicControl.getVeraListaInterventi() )));
+		comboBox.setModel(new DefaultComboBoxModel( new Vector<String>(GenericControl.getVeraListaInterventi() )));
 		comboBox.setBounds(10, 62, 213, 22);
 		contentPane.add(comboBox);
 		

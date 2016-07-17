@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.Vector;
 
+import model.ExtraRegionale;
 import model.Farmaco;
 import model.Intervento;
 import model.Ricovero;
@@ -14,10 +15,23 @@ import model.Somministrazione;
 import model.Tabella;
 import model.Terapia;
 
-public class MedicControl {
+public class GenericControl {
 	private static Connection c = null;
     private static Statement stmt = null;
     
+    
+    public static Vector<Ricovero> getRicoveriExtraRegione(){
+    	Tabella tab= new Tabella();
+    	Vector<Ricovero> res=new Vector<Ricovero>();
+    	for(ExtraRegionale e: tab.getListaExtraRegionali()){
+    		for(Ricovero r: tab.getListaRicoveri()){
+    			if(e.getCodiceFiscale().equals(r.getPaziente().getCodiceFiscale())){
+    				res.addElement(r);
+    			}
+    		}
+    	}
+    	return res;
+    }
 	
     public static LinkedList<String> getVeraListaInterventi(){
     	LinkedList<String> res= new LinkedList<String>();

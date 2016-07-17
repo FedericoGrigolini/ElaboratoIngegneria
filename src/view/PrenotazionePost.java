@@ -56,7 +56,7 @@ public class PrenotazionePost extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboBox = new JComboBox<Ricovero>();
-		comboBox.setModel(new DefaultComboBoxModel(control.AccettazioneControl.listaRicoveriComboBox()));
+		comboBox.setModel(new DefaultComboBoxModel(control.SegreterieControl.listaRicoveriComboBox()));
 		comboBox.setBounds(20, 44, 204, 20);
 		contentPane.add(comboBox);
 		

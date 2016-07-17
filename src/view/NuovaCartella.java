@@ -91,7 +91,7 @@ public class NuovaCartella extends JFrame {
 		btnVerifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(control.AccettazioneControl.pazientePresente(campoCodice.getText())){
+				if(control.SegreterieControl.pazientePresente(campoCodice.getText())){
 					String s=campoCodice.getText();
 					paziente = new model.Paziente(s);
 					esiste=true;
@@ -186,7 +186,7 @@ public class NuovaCartella extends JFrame {
 
 		comboBox = new JComboBox<Medico>();
 
-		comboBox.setModel(new DefaultComboBoxModel(control.AccettazioneControl.listaMediciComboBox()) {
+		comboBox.setModel(new DefaultComboBoxModel(control.SegreterieControl.listaMediciComboBox()) {
 		});
 		
 		JLabel lblNewLabel_1 = new JLabel("Motivo");
