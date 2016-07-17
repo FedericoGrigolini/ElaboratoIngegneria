@@ -75,6 +75,15 @@ public class MenùMedico extends JFrame {
 		contentPane.add(btnCompilaPrescrizioneTerapia);
 		
 		JButton btnCompilaLetteraDi = new JButton("Compila Lettera di Dimissione");
+		btnCompilaLetteraDi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!MenùMedico.occupato){
+					MenùMedico.occupato=true;
+					StampaLettera.main(null);
+				}
+			}
+		});
 		btnCompilaLetteraDi.setBounds(61, 112, 171, 23);
 		contentPane.add(btnCompilaLetteraDi);
 		

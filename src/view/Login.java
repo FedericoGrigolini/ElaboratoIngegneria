@@ -99,7 +99,7 @@ public class Login {
 					case 1:{
 						occupato=true;
 						errorLabel.setVisible(false);
-						menùReparto.main(null);
+						MenùReparto.main(null);
 						break;
 					}
 					case 2:{

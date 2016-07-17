@@ -111,7 +111,7 @@ public class GestioneLetti extends JFrame {
 		btnEsci.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menùReparto.occupato=false;
+				MenùReparto.occupato=false;
 				dispose();
 			}
 		});
