@@ -20,7 +20,7 @@ public class LoginControl {
 		}
 		case "M.Responsabile":{
 			for(model.Ricovero r: new model.Tabella().getListaRicoveri()){
-				if(r.getMedicoResponsabile().getCodiceFiscale()==pass){
+				if(r.getMedicoResponsabile().getCodiceFiscale().equals(pass)){
 					return 2;
 				}
 			}

@@ -1,0 +1,68 @@
+package control;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.Vector;
+
+import model.Farmaco;
+import model.Intervento;
+import model.Ricovero;
+import model.Tabella;
+import model.Terapia;
+
+public class MedicControl {
+	private static Connection c = null;
+    private static Statement stmt = null;
+    
+	public static String getCodiceIntervento(){
+		int cod=1;
+		try {
+			c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		    c.setAutoCommit(false);
+		    stmt = c.createStatement();
+		    ResultSet rs = stmt.executeQuery( "SELECT Ricovero, Codice_Intervento FROM Intervento INNER JOIN Ricovero ON Intervento.Ricovero=Ricovero.Codice;" );
+		    while ( rs.next() ) {
+		       cod++;
+		    }
+		    rs.close();
+		    stmt.close();
+		    c.close();
+		} catch ( Exception e ) {
+		   	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		   	System.exit(0);
+		}
+		String res="I"+String.format("%04d", cod);
+		return res;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getCodiceIntervento());
+	}
+	
+	public static Vector<Ricovero> getRicoveriMedico(String key){
+		Vector<Ricovero> res = new Vector<Ricovero>() ;
+		for(Ricovero r:new Tabella().getListaRicoveri()){
+			if(r.getMedicoResponsabile().getCodiceFiscale().equals(key)){
+				res.add(r);
+			}
+		}
+		return res;
+	}
+	
+	public static Vector<Farmaco> listaFarmaci(){
+		return new Vector<Farmaco>(new Tabella().getListaFarmaci());
+	}
+	
+	public static Terapia esisteTerapia(Ricovero r){
+		for(Terapia t:new Tabella().getListaTerapie()){
+			if(t.getRicovero().getCodiceUnivoco().equals(r.getCodiceUnivoco())){
+				return t;
+			}	
+		}
+		return null;
+	}
+	
+}

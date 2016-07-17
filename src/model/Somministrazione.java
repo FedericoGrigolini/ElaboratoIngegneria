@@ -14,9 +14,9 @@ public class Somministrazione {
 	private String modalità;
 	private Terapia terapia;//chiave
 	private Farmaco farmaco;//chiave
-	private Infermiere infermiere;//chiave
+	private String infermiere;//chiave
 	
-	public Somministrazione(Terapia t, Farmaco f, Infermiere i,String m, Integer d) {
+	public Somministrazione(Terapia t, Farmaco f, String i,String m, Integer d) {
 		this.terapia=t;
 		this.farmaco=f;
 		this.infermiere=i;
@@ -34,7 +34,7 @@ public class Somministrazione {
 		         if(rs.getString(1).equals(t) && rs.getString(2).equals(f) && rs.getString(3).equals(i)){
 		        	 this.terapia = new Terapia(rs.getString(1));
 		        	 this.farmaco = new Farmaco(f);
-		        	 this.infermiere = new Infermiere(i);
+		        	 this.infermiere = i;
 		        	 this.modalità=rs.getString(5);
 		        	 this.dose=new Integer(rs.getInt(4));
 		        	 break;
@@ -62,6 +62,9 @@ public class Somministrazione {
 		return this.farmaco;
 	}
 	public Infermiere getInfermiere(){
+		return new Infermiere(this.infermiere);
+	}
+	public String getInfermiereAux(){
 		return this.infermiere;
 	}
 	
@@ -89,7 +92,7 @@ public class Somministrazione {
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Farmaco='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere.codiceFiscale +";" );
+		      		+ "SET Farmaco='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere +";" );
 		      rs.close();
 		      stmt.close();
 		      c.close();
@@ -100,21 +103,7 @@ public class Somministrazione {
 		    }
 	}
 	public void setInfermiere(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Infermiere='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere.codiceFiscale +";" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
-		      this.infermiere= new Infermiere(k);
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
+		      this.infermiere= k;
 	}
 	public void setDosaggio(Integer k){
 		try {
@@ -123,7 +112,7 @@ public class Somministrazione {
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Dosaggio='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere.codiceFiscale +";" );
+		      		+ "SET Dosaggio='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere +";" );
 		      rs.close();
 		      stmt.close();
 		      c.close();
@@ -140,7 +129,7 @@ public class Somministrazione {
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Modalità='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere.codiceFiscale +";" );
+		      		+ "SET Modalità='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere +";" );
 		      rs.close();
 		      stmt.close();
 		      c.close();

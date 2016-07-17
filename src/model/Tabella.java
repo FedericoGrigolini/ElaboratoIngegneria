@@ -768,7 +768,7 @@ public class Tabella {
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
 			      String sql = "INSERT INTO Somministrazione (Terapia,Farmaco,Infermiere,Dosaggio,Modalità) " +
-			                   "VALUES ('"+p.getTerapia().getRicovero() +"','"+p.getFarmaco().getNome()+"','"+p.getInfermiere().getCodiceFiscale()+"','"+p.getDosaggio()+"','"+ p.getModalità() +"');"; 
+			                   "VALUES ('"+p.getTerapia().getRicovero().getCodiceUnivoco() +"','"+p.getFarmaco().getNome()+"','"+p.getInfermiereAux()+"','"+p.getDosaggio()+"','"+ p.getModalità() +"');"; 
 			      stmt.executeUpdate(sql);
 			      stmt.close();
 			      c.commit();

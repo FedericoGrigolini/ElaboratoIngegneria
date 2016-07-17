@@ -12,6 +12,11 @@ public class Terapia {
 	private String dataInizio;
 	private String dataFine;
 	
+	public Terapia(String r,String di,String df) {
+		ricovero=new Ricovero(r);
+		dataInizio=di;
+		dataFine=df;
+	}
 	
 	public Terapia(String k){
 		try {

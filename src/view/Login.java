@@ -27,6 +27,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLayeredPane;
 
 public class Login {
+	public static String id;
 	public static boolean occupato=false;
 	private JFrame frame;
 	private JTextField userField;
@@ -104,6 +105,8 @@ public class Login {
 					case 2:{
 						occupato=true;
 						errorLabel.setVisible(false);
+						id=passwordField.getText();
+						MenùMedico.main(null);
 						break;
 					}
 					case 3:{
