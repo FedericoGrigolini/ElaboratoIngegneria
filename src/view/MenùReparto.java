@@ -66,7 +66,7 @@ public class MenùReparto extends JFrame {
 				}
 			}
 		});
-		btnPrenotazionePostRicovero.setBounds(72, 94, 165, 23);
+		btnPrenotazionePostRicovero.setBounds(48, 94, 219, 23);
 		contentPane.add(btnPrenotazionePostRicovero);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -77,7 +77,7 @@ public class MenùReparto extends JFrame {
 				dispose();
 			}
 		});
-		btnLogout.setBounds(72, 128, 165, 23);
+		btnLogout.setBounds(48, 128, 219, 23);
 		contentPane.add(btnLogout);
 		
 		btnAssegnamentoLetti = new JButton("Assegnamento Letti");
@@ -90,7 +90,7 @@ public class MenùReparto extends JFrame {
 				}
 			}
 		});
-		btnAssegnamentoLetti.setBounds(72, 60, 165, 23);
+		btnAssegnamentoLetti.setBounds(48, 60, 219, 23);
 		contentPane.add(btnAssegnamentoLetti);
 	}
 

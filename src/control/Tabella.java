@@ -566,7 +566,7 @@ public class Tabella {
 			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
-			      String sql = "INSERT INTO Paziente (Codice,Nome,Cognome,Data_N,Luogo_N,Provincia_N) " +
+			      String sql = "INSERT INTO Paziente (Codice,Nome,Cognome,Data_N,Luogo_N,Provincia_R) " +
 			                   "VALUES ('"+p.getCodiceFiscale() + "','"+p.getNome() + "','" + p.getCognome() + "','" +p.getDataNascita()+
 			                   "','"+ p.getLuogaNascita() + "','"+ p.getProvincia() + "');"; 
 			      stmt.executeUpdate(sql);
@@ -624,7 +624,7 @@ public class Tabella {
 			      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
 			      c.setAutoCommit(false);
 			      stmt = c.createStatement();
-			      String sql = "INSERT INTO InRegione (Paziente,Ulss,Regione) " +
+			      String sql = "INSERT INTO FuoriRegione (Paziente,Ulss,Regione) " +
 			                   "VALUES ('"+p.getCodiceFiscale() +"','"+p.getUlss() +"','"+p.getRegione() +"');"; 
 			      stmt.executeUpdate(sql);
 			      stmt.close();

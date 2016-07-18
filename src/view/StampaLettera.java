@@ -50,7 +50,7 @@ public class StampaLettera extends JFrame {
 	 */
 	public StampaLettera() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 625, 553);
+		setBounds(100, 100, 408, 553);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,7 +62,7 @@ public class StampaLettera extends JFrame {
 		contentPane.add(lblLetteraDiDimissione);
 		
 		JLabel label_1 = new JLabel("Selezionare un ricovero");
-		label_1.setBounds(20, 44, 112, 14);
+		label_1.setBounds(20, 44, 213, 14);
 		contentPane.add(label_1);
 		
 		JButton btnScriviLettera = new JButton("Scrivi Lettera");
@@ -91,7 +91,7 @@ public class StampaLettera extends JFrame {
 		contentPane.add(buttonEsc);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel<Ricovero>(new Vector<Ricovero>(new Tabella().getListaRicoveri())));
+		comboBox.setModel(new DefaultComboBoxModel<Ricovero>(new Vector<Ricovero>(control.GenericControl.getRicoveriMedico(Login.id))));
 		comboBox.setBounds(10, 67, 189, 22);
 		contentPane.add(comboBox);
 		

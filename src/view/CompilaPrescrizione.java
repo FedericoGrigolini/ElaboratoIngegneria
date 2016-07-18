@@ -128,11 +128,11 @@ public class CompilaPrescrizione extends JFrame {
 		contentPane.add(comboBox_1);
 		
 		JLabel lblDosaggio = new JLabel("Dosaggio:");
-		lblDosaggio.setBounds(233, 123, 48, 14);
+		lblDosaggio.setBounds(226, 123, 68, 14);
 		contentPane.add(lblDosaggio);
 		
 		JLabel lblModalitDiSomministrazione = new JLabel("Modalit\u00E0 di Somministrazione");
-		lblModalitDiSomministrazione.setBounds(20, 148, 136, 14);
+		lblModalitDiSomministrazione.setBounds(20, 148, 199, 14);
 		contentPane.add(lblModalitDiSomministrazione);
 		
 		textPane = new JTextPane();
@@ -162,7 +162,7 @@ public class CompilaPrescrizione extends JFrame {
 			}
 		});
 		btnCompila.setEnabled(false);
-		btnCompila.setBounds(20, 273, 89, 23);
+		btnCompila.setBounds(20, 273, 100, 23);
 		contentPane.add(btnCompila);
 		
 		JButton btnEsci = new JButton("Esci");

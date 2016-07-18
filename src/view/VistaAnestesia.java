@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -120,7 +119,7 @@ public class VistaAnestesia extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Intervento temp;
-				boolean x=false;
+				boolean x=true;
 				String s = (String) comboBox.getSelectedItem();
 				for(Intervento i: new Tabella().getListaInterventi() ){	
 					System.out.println(i.getCodiceIntervento());
@@ -135,8 +134,14 @@ public class VistaAnestesia extends JFrame {
 							x=false;
 							break;
 						}
+						x=true;
 					}
 				}
+				if(x){
+					textPane.setEditable(false);
+					btnAggiorna.setEnabled(false);
+				}
+
 				for(Intervento i: new Tabella().getListaInterventi() ){
 					if(i.getCodiceIntervento().equals(s)){
 						temp=i;

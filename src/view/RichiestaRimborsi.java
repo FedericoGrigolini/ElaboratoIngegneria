@@ -66,7 +66,7 @@ public class RichiestaRimborsi extends JFrame {
 		contentPane.add(comboBox);
 		
 		JLabel lblSelezionareUnRicovero = new JLabel("Selezionare un ricovero");
-		lblSelezionareUnRicovero.setBounds(20, 44, 112, 14);
+		lblSelezionareUnRicovero.setBounds(20, 44, 183, 14);
 		contentPane.add(lblSelezionareUnRicovero);
 		
 		JButton btnInviaRichiesta = new JButton("Invia Richiesta");

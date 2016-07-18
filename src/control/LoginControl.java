@@ -29,9 +29,7 @@ public class LoginControl {
 		case "M.Anestesia":{
 			for(model.Medico r: new control.Tabella().getListaMedici()){
 				if(r.getCodiceFiscale().equals(pass) ){
-					System.out.println(pass+" "+r.getSpecialità());
 					if(r.getSpecialità().equals("Anestesia")){
-						System.out.println(pass);
 						for(model.Intervento i: new control.Tabella().getListaInterventi()){
 							for(model.Operatore o: i.getOperatoriSala()){
 								if(r.getCodiceFiscale().equals(o.getCodiceFiscale())){
@@ -57,8 +55,8 @@ public class LoginControl {
 				if(i.getCodiceFiscale().equals(pass)){
 					return 5;
 				}
-				else return -1;
 			}
+			return -1;
 		}
 		default:{
 			return -1;

@@ -49,7 +49,7 @@ public class VistaOperatore extends JFrame {
 	 */
 	public VistaOperatore() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 291, 202);
+		setBounds(100, 100, 290, 202);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,7 +66,7 @@ public class VistaOperatore extends JFrame {
 		contentPane.add(comboBox);
 		
 		JLabel lblSelezionareInterventoIn = new JLabel("Selezionare Intervento in cui partecipare");
-		lblSelezionareInterventoIn.setBounds(20, 42, 215, 14);
+		lblSelezionareInterventoIn.setBounds(20, 42, 260, 14);
 		contentPane.add(lblSelezionareInterventoIn);
 		
 		JButton btnAggiungiti = new JButton("Aggiungiti");

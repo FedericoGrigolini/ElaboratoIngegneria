@@ -71,7 +71,7 @@ public class CompilaIntervento extends JFrame {
 		contentPane.add(lblCompilaSchedaIntervento);
 		
 		comboBox = new JComboBox();
-		comboBox.setBounds(122, 43, 215, 22);
+		comboBox.setBounds(149, 44, 215, 22);
 		comboBox.setModel(new DefaultComboBoxModel(control.GenericControl.getRicoveriMedico(Login.id)));
 		contentPane.add(comboBox);
 		
@@ -89,15 +89,15 @@ public class CompilaIntervento extends JFrame {
 
 			}
 		});
-		btnScelta.setBounds(347, 43, 89, 23);
+		btnScelta.setBounds(392, 44, 89, 23);
 		contentPane.add(btnScelta);
 		
 		JLabel lblScegliereIlRicovero = new JLabel("Scegliere il ricovero");
-		lblScegliereIlRicovero.setBounds(20, 48, 92, 14);
+		lblScegliereIlRicovero.setBounds(20, 48, 119, 14);
 		contentPane.add(lblScegliereIlRicovero);
 		
 		JLabel lblCodiceIntervento = new JLabel("Codice Intervento");
-		lblCodiceIntervento.setBounds(21, 96, 87, 14);
+		lblCodiceIntervento.setBounds(21, 96, 102, 14);
 		contentPane.add(lblCodiceIntervento);
 		
 		campoCodice = new JTextField();
@@ -108,7 +108,7 @@ public class CompilaIntervento extends JFrame {
 		campoCodice.setColumns(10);
 		
 		JLabel lblDataIntervento = new JLabel("Data Intervento");
-		lblDataIntervento.setBounds(20, 134, 88, 14);
+		lblDataIntervento.setBounds(20, 134, 103, 14);
 		contentPane.add(lblDataIntervento);
 		
 		campoData = new JTextField();
@@ -130,15 +130,15 @@ public class CompilaIntervento extends JFrame {
 		contentPane.add(spinnerUrgenza);
 		
 		JLabel lblOrario = new JLabel("Orario ");
-		lblOrario.setBounds(251, 134, 33, 14);
+		lblOrario.setBounds(242, 134, 42, 14);
 		contentPane.add(lblOrario);
 		
 		JLabel lblLivelloUrgenza = new JLabel("Livello Urgenza");
-		lblLivelloUrgenza.setBounds(409, 134, 72, 14);
+		lblLivelloUrgenza.setBounds(392, 134, 89, 14);
 		contentPane.add(lblLivelloUrgenza);
 		
 		JLabel lblTipoIntervento = new JLabel("Tipo Intervento");
-		lblTipoIntervento.setBounds(20, 173, 75, 14);
+		lblTipoIntervento.setBounds(20, 173, 89, 14);
 		contentPane.add(lblTipoIntervento);
 		
 		JPanel panel = new JPanel();
@@ -153,7 +153,7 @@ public class CompilaIntervento extends JFrame {
 		campoTipo.setEnabled(false);
 		
 		JLabel lblDurataPrevista = new JLabel("Durata Prevista");
-		lblDurataPrevista.setBounds(20, 266, 75, 14);
+		lblDurataPrevista.setBounds(20, 266, 103, 14);
 		contentPane.add(lblDurataPrevista);
 		
 		campoDurata = new JTextField();

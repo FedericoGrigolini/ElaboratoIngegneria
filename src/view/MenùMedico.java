@@ -58,7 +58,7 @@ public class MenùMedico extends JFrame {
 				}
 			}
 		});
-		btnCompilaSchedaIntervento.setBounds(61, 44, 169, 23);
+		btnCompilaSchedaIntervento.setBounds(37, 44, 215, 23);
 		contentPane.add(btnCompilaSchedaIntervento);
 		
 		JButton btnCompilaPrescrizioneTerapia = new JButton("Compila Prescrizione Terapia");
@@ -71,7 +71,7 @@ public class MenùMedico extends JFrame {
 				}
 			}
 		});
-		btnCompilaPrescrizioneTerapia.setBounds(61, 78, 169, 23);
+		btnCompilaPrescrizioneTerapia.setBounds(37, 78, 215, 23);
 		contentPane.add(btnCompilaPrescrizioneTerapia);
 		
 		JButton btnCompilaLetteraDi = new JButton("Compila Lettera di Dimissione");
@@ -84,7 +84,7 @@ public class MenùMedico extends JFrame {
 				}
 			}
 		});
-		btnCompilaLetteraDi.setBounds(61, 112, 171, 23);
+		btnCompilaLetteraDi.setBounds(37, 112, 215, 23);
 		contentPane.add(btnCompilaLetteraDi);
 		
 		JButton btnEsci = new JButton("Logout");
@@ -95,7 +95,7 @@ public class MenùMedico extends JFrame {
 				dispose();
 			}
 		});
-		btnEsci.setBounds(61, 146, 169, 23);
+		btnEsci.setBounds(37, 146, 215, 23);
 		contentPane.add(btnEsci);
 	}
 

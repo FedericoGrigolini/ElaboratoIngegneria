@@ -56,7 +56,7 @@ public class PrenotazionePost extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboBox = new JComboBox<Ricovero>();
-		comboBox.setModel(new DefaultComboBoxModel(control.SegreterieControl.listaRicoveriComboBox()));
+		comboBox.setModel(new DefaultComboBoxModel(control.SegreterieControl.getRicoveriPrenotazioni()));
 		comboBox.setBounds(20, 44, 204, 20);
 		contentPane.add(comboBox);
 		
@@ -90,6 +90,8 @@ public class PrenotazionePost extends JFrame {
 				Ricovero r = (Ricovero)comboBox.getSelectedItem();
 				PrenotazionePostRicovero p=new PrenotazionePostRicovero(r, textField.getText(), textField_1.getText());
 				new Tabella().insertPrenotazionePostRicovero(p);
+				MenùReparto.occupato=false;
+				dispose();
 			}
 		});
 		btnPrenota.setBounds(257, 74, 89, 23);

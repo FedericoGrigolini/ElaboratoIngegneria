@@ -55,7 +55,7 @@ public class MenùAccettazione extends JFrame {
 		label_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
 		JButton button = new JButton("Nuova Cartella Clinica");
-		button.setBounds(53, 98, 141, 23);
+		button.setBounds(53, 98, 170, 23);
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -67,7 +67,7 @@ public class MenùAccettazione extends JFrame {
 		});
 		
 		JButton button_1 = new JButton("Stampa Cartella Clinica");
-		button_1.setBounds(53, 127, 141, 23);
+		button_1.setBounds(53, 127, 170, 23);
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -79,7 +79,7 @@ public class MenùAccettazione extends JFrame {
 		});
 		
 		JButton button_2 = new JButton("Logout");
-		button_2.setBounds(53, 185, 141, 23);
+		button_2.setBounds(53, 185, 170, 23);
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -89,7 +89,7 @@ public class MenùAccettazione extends JFrame {
 		});
 		
 		JButton btnRimborsi = new JButton("Richiesta Rimborsi");
-		btnRimborsi.setBounds(53, 156, 141, 23);
+		btnRimborsi.setBounds(53, 156, 170, 23);
 		btnRimborsi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
