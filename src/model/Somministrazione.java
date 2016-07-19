@@ -73,75 +73,19 @@ public class Somministrazione {
 	}
 	
 	public void setTerapia(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Terapia='"+ k +"' WHERE Dosaggio='"+ this.getDosaggio()+"' AND Terapia="+ terapia.getRicovero() +";" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
 		      this.terapia=new Terapia(k);
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
 	}
 	public void setFarmaco(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Farmaco='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere +";" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
 		      this.farmaco=new Farmaco(k);
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
 	}
 	public void setInfermiere(String k){
 		      this.infermiere= k;
 	}
 	public void setDosaggio(Integer k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Dosaggio='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere +";" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
 		      this.dose= k;
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
 	}
 	public void setModalità(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Somministrazione "
-		      		+ "SET Modalità='"+ k +"' WHERE Farmaco='"+ this.getFarmaco()+"' AND Terapia="+ terapia.getRicovero() +"' AND Infermiere="+ infermiere +";" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
 		      this.modalità= k;
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
 	}
 	
 	public String toString(){

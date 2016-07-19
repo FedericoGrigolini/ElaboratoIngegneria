@@ -47,55 +47,13 @@ public class Terapia {
 	public Ricovero getRicovero(){return ricovero;}
 	
 	public void setRicovero(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Terapia "
-		      		+ "SET Ricovero='"+ k +"' WHERE Ricovero='"+ this.ricovero.getCodiceUnivoco() +"';" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
 		      this.ricovero=new Ricovero(k);
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
 	}
 	public void setDataInizio(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Terapia "
-		      		+ "SET Data_I='"+ k +"' WHERE Ricovero='"+ this.ricovero.getCodiceUnivoco() +"';" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
 		      this.dataInizio=k;
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
 	}
 	public void setDataFine(String k){
-		try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		      c.setAutoCommit(false);
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "UPDATE Terapia "
-		      		+ "SET Data_F='"+ k +"' WHERE Ricovero='"+ this.ricovero.getCodiceUnivoco() +"';" );
-		      rs.close();
-		      stmt.close();
-		      c.close();
 		      this.dataFine=k;
-		    } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		    }
 	}
 	
 	public String toString(){

@@ -244,21 +244,6 @@ public class Intervento  {
 		      this.operatore=new Operatore(k);	
 	}
 	
-	public void delete(String ric, String cod,String op ){
-		try {
-			Class.forName("org.sqlite.JDBC");
-		    c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
-		    c.setAutoCommit(false);
-		    stmt = c.createStatement();
-		    String sql = "DELETE FROM Intervento WHERE Codice_Intervento='"+ cod +"' AND Ricovero='"+"' AND Operatore='"+this.operatore.getCodiceFiscale()+"';";
-		    stmt.executeUpdate(sql);
-		    c.commit();
-		}catch ( Exception e ) {
-	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    	System.exit(0);
-	    }			
-}
-	
 	
 	public String toString(){
 		String p = "Codice Intervento: "+this.codice+"  Ricovero: "+this.ricovero.getCodiceUnivoco()+ "  Urgenza: " + this.urgenza +
