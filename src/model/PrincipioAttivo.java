@@ -38,7 +38,21 @@ public class PrincipioAttivo {
 	}
 	
 	public void setNome(String k){
+		try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		      c.setAutoCommit(false);
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "UPDATE PrincipioAttivo "
+		      		+ "SET Nome='"+ k +"' WHERE Nome='"+ this.nome +"';" );
+		      rs.close();
+		      stmt.close();
+		      c.close();
 		      this.nome=k;
+		    } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      System.exit(0);
+		    }
 	}
 	
 	public String toString(){

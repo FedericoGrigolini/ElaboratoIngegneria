@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
+
+import control.Tabella;
 
 
 public class Ricovero {
@@ -142,7 +145,11 @@ public class Ricovero {
 	}
 		
 	public static void main( String args[] ){
-
+		System.out.println("Pippo");
+		Ricovero r=new Ricovero("R00006");
+		System.out.println(r.stampa());
+		new Tabella().deleteRicovero(r.codiceUnivoco);
+		r.setLetto(4);
 	}
 	
 	

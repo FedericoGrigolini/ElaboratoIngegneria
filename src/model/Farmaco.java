@@ -108,6 +108,50 @@ public class Farmaco {
 		    }
 	}
 
+	public LinkedList<PrincipioAttivo> getListaPrincipiattivi(){
+		LinkedList<PrincipioAttivo> res = new LinkedList<PrincipioAttivo>();
+		try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		      c.setAutoCommit(false);
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Composizione_Farmaco;" );
+		      while ( rs.next() ) {
+		         if(nome==rs.getString(1)){
+		        	 res.add(new PrincipioAttivo(rs.getString(2)));
+		         }
+		      }
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		    } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      return null;
+		    }
+		return res;
+	}
+	public Integer getQuantit‡Principio(PrincipioAttivo p){
+		try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:GestioneOspedale.db");
+		      c.setAutoCommit(false);
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM Composizione_Farmaco;" );
+		      while ( rs.next() ) {
+		         if(nome==rs.getString(1)&&p.getNome()==rs.getString(2)){
+		        	 return new Integer(rs.getInt(3));
+		         }
+		      }
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		    } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      return null;
+		    }
+		return null;
+	}	
+	
 	public String toString(){
 		return nome+" "+azienda;
 	}
