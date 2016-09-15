@@ -71,7 +71,7 @@ public class StampaLettera extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Ricovero r=(Ricovero)comboBox.getSelectedItem();
 				Medico m = r.getMedicoResponsabile();
-				String s="Il paziente: " +r.getPaziente().getCognome()+" "+r.getPaziente().getCognome()+" è dimesso dal reparto di "+r.getDivisione()+
+				String s="Il paziente: " +r.getPaziente().getCognome()+" "+r.getPaziente().getNome()+" è dimesso dal reparto di "+r.getDivisione()+
 						"\n le auguriamo buona salute\n Dottor " + m.getCognome() +" "+m.getNome();
 				textPane.setText(s);
 			}
